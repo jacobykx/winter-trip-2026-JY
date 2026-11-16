@@ -4,672 +4,963 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Family Winter Trip 2026</title>
+<meta name="description" content="Sixteen days: London, Barcelona for Christmas, Lisbon, and London again for New Year.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&display=swap" rel="stylesheet">
 <style>
-/* Layout idea: a timetable. One narrow column, dates in a mono gutter on the left,
-   each city leg carries its own colour stripe from the route bar down to its days. */
+/* Layout idea: a winter-night opening (route map, live countdown, snow), then a quiet
+   travel journal: one chapter per stop, each carrying its own colour and skyline,
+   with oversized date numerals as the recurring mark. */
 :root{
-  --paper:#f2f4f8;
+  --paper:#eef1f6;
   --surface:#ffffff;
-  --ink:#16202e;
-  --muted:#586374;
-  --line:#d5dbe4;
+  --ink:#131a2a;
+  --muted:#566178;
+  --line:#d4dae5;
+  --london:#bd2d38;
+  --barcelona:#a86400;
+  --lisbon:#14659f;
   --flight:#7a1f3d;
-  --london:#b3262e;
-  --barcelona:#b97a00;
-  --lisbon:#1b6a9e;
-  --ok:#1d7a4c;
-  --ok-bg:#e2f3ea;
-  --warn:#8a5a00;
-  --warn-bg:#fbeecb;
-  --info:#1b5a9e;
-  --info-bg:#e1ecf9;
-  --display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
-  --body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
-  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --ok:#1d7a4c;   --ok-bg:#e2f3ea;
+  --warn:#8a5a00; --warn-bg:#fbeecb;
+  --info:#1b5a9e; --info-bg:#e1ecf9;
+  /* the opening is night in both themes */
+  --night:#0b1530;
+  --night-2:#1c2e5c;
+  --night-ink:#f3f6fc;
+  --night-muted:#aab7d2;
+  --glow:#f5c451;
+  --display:"Fraunces","Iowan Old Style","Palatino Linotype",Georgia,serif;
+  --body:"Figtree","Segoe UI",system-ui,sans-serif;
+  --mono:"DM Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
   color-scheme:light;
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --paper:#0f141b;
-    --surface:#18202a;
-    --ink:#e7ecf3;
-    --muted:#9ba7b7;
-    --line:#2b3644;
-    --flight:#e591ad;
-    --london:#f0767b;
-    --barcelona:#efb840;
-    --lisbon:#68b5e8;
-    --ok:#6fd19e;
-    --ok-bg:#16352a;
-    --warn:#f0c35a;
-    --warn-bg:#3a2e12;
-    --info:#86bdf2;
-    --info-bg:#172c44;
+    --paper:#0a101c; --surface:#131c2c; --ink:#e8edf6; --muted:#9aa7bc; --line:#27334a;
+    --london:#f47f85; --barcelona:#f0b84a; --lisbon:#74bcee; --flight:#e591ad;
+    --ok:#6fd19e; --ok-bg:#15342a; --warn:#f0c35a; --warn-bg:#3a2e12; --info:#86bdf2; --info-bg:#172c44;
     color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
-  --paper:#0f141b;
-  --surface:#18202a;
-  --ink:#e7ecf3;
-  --muted:#9ba7b7;
-  --line:#2b3644;
-  --flight:#e591ad;
-  --london:#f0767b;
-  --barcelona:#efb840;
-  --lisbon:#68b5e8;
-  --ok:#6fd19e;
-  --ok-bg:#16352a;
-  --warn:#f0c35a;
-  --warn-bg:#3a2e12;
-  --info:#86bdf2;
-  --info-bg:#172c44;
+  --paper:#0a101c; --surface:#131c2c; --ink:#e8edf6; --muted:#9aa7bc; --line:#27334a;
+  --london:#f47f85; --barcelona:#f0b84a; --lisbon:#74bcee; --flight:#e591ad;
+  --ok:#6fd19e; --ok-bg:#15342a; --warn:#f0c35a; --warn-bg:#3a2e12; --info:#86bdf2; --info-bg:#172c44;
   color-scheme:dark;
 }
 
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{
-  margin:0;
-  background:var(--paper);
-  color:var(--ink);
-  font-family:var(--body);
-  font-size:16px;
-  line-height:1.55;
-}
-.wrap{
-  max-width:820px;
-  margin:0 auto;
-  padding:32px 20px 64px;
-  display:flex;
-  flex-direction:column;
-  gap:44px;
-}
-h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
-h1{font-size:clamp(1.9rem,5.2vw,2.8rem);font-weight:700;letter-spacing:-0.01em}
-h2{font-size:1.45rem;font-weight:700}
-h3{font-size:1.08rem;font-weight:500}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
+h1,h2,h3,h4{font-family:var(--display);font-weight:600;text-wrap:balance;margin:0;line-height:1.12}
 p{margin:0}
 a{color:var(--info)}
-a:focus-visible,input:focus-visible{outline:2px solid var(--info);outline-offset:2px}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--info);outline-offset:2px}
 .mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
 .muted{color:var(--muted)}
 .small{font-size:.875rem}
 
-/* Header */
-.top{display:flex;flex-direction:column;gap:14px}
-.eyebrow{font-family:var(--mono);font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-.lede{max-width:62ch;color:var(--muted)}
-.lede strong{color:var(--ink);font-weight:600}
-
-/* Route bar */
-.route{display:flex;gap:4px;margin-top:8px}
-.seg{
-  flex:var(--n) 1 0;
-  min-width:0;
-  background:var(--surface);
-  border:1px solid var(--line);
-  border-top:5px solid var(--c);
-  border-radius:4px;
-  padding:10px 12px 12px;
-  display:flex;
-  flex-direction:column;
-  gap:2px;
+/* ---------- Opening ---------- */
+.hero{
+  position:relative;overflow:hidden;color:var(--night-ink);
+  background:
+    radial-gradient(ellipse 70% 55% at 78% 108%, rgba(245,196,81,.20), transparent 70%),
+    linear-gradient(175deg, var(--night) 0%, var(--night-2) 100%);
 }
-.seg .city{font-family:var(--display);font-weight:700;font-size:1.05rem}
-.seg .when{font-family:var(--mono);font-size:.78rem;color:var(--muted)}
-.seg .nights{font-size:.8rem;color:var(--muted)}
-@media (max-width:620px){
-  .route{flex-direction:column}
-  .seg{flex:none;flex-direction:row;align-items:baseline;gap:10px;border-top:1px solid var(--line);border-left:5px solid var(--c)}
-  .seg .nights{margin-left:auto}
+#snow{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero-inner{
+  position:relative;max-width:1120px;margin:0 auto;padding:52px 24px 60px;
+  display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:32px;align-items:center;
+}
+.eyebrow{font-family:var(--mono);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--night-muted)}
+.hero h1{font-size:clamp(2.2rem,5.4vw,3.9rem);font-weight:500;letter-spacing:-.015em;margin:14px 0 18px}
+.hero h1 em{font-style:italic;font-weight:600}
+.hero h1 .bcn{color:#f6c15c}
+.hero h1 .lon{color:#f7939a}
+.hero h1 .lis{color:#86c8f5}
+.lede{max-width:56ch;color:var(--night-muted);font-size:1.05rem}
+.lede strong{color:var(--night-ink);font-weight:600}
+
+.count{margin-top:28px;display:flex;flex-direction:column;gap:8px}
+.count-units{display:flex;gap:10px}
+.unit{
+  min-width:86px;padding:10px 12px 8px;border:1px solid rgba(255,255,255,.16);border-radius:10px;
+  background:rgba(255,255,255,.06);display:flex;flex-direction:column;gap:2px;
+}
+.unit .n{font-family:var(--display);font-size:2.3rem;font-weight:600;line-height:1;font-variant-numeric:tabular-nums;color:var(--glow)}
+.unit .l{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--night-muted)}
+.count-big{font-family:var(--display);font-size:2.4rem;font-weight:600;color:var(--glow);line-height:1.1}
+.count-label{color:var(--night-muted);font-size:.95rem}
+.count-label a{color:var(--glow)}
+
+.stats{display:flex;flex-wrap:wrap;gap:8px 26px;margin-top:26px;padding-top:18px;border-top:1px solid rgba(255,255,255,.14)}
+.stat{display:flex;align-items:baseline;gap:7px}
+.stat b{font-family:var(--display);font-size:1.5rem;font-weight:600}
+.stat span{font-size:.85rem;color:var(--night-muted)}
+
+.map{width:100%;height:auto;display:block}
+.map text{font-family:var(--body);fill:var(--night-ink)}
+.map .t-city{font-family:var(--display);font-size:19px;font-weight:600}
+.map .t-date{font-family:var(--mono);font-size:10.5px;fill:var(--night-muted);letter-spacing:.04em}
+.map .t-leg{font-family:var(--mono);font-size:10.5px;fill:var(--glow);letter-spacing:.04em}
+.map .leg{fill:none;stroke:var(--glow);stroke-width:2;stroke-linecap:round;stroke-dasharray:1 8;animation:fly 1.6s linear infinite}
+.map .inbound{stroke:var(--night-muted)}
+.map .grat{fill:none;stroke:#fff;stroke-opacity:.07}
+@keyframes fly{to{stroke-dashoffset:-18}}
+@media (prefers-reduced-motion:reduce){.map .leg{animation:none}html{scroll-behavior:auto}}
+@media (max-width:860px){
+  .hero-inner{grid-template-columns:1fr;padding:40px 20px 44px;gap:20px}
+  .map{max-width:440px;margin:0 auto}
+  .unit{min-width:0;flex:1}
 }
 
-nav.jump{display:flex;flex-wrap:wrap;gap:8px}
-nav.jump a{
-  font-size:.875rem;font-weight:500;text-decoration:none;color:var(--ink);
-  border:1px solid var(--line);background:var(--surface);
-  padding:6px 12px;border-radius:999px;
+/* ---------- Sticky nav ---------- */
+.nav{
+  position:sticky;top:0;z-index:20;border-bottom:1px solid var(--line);
+  background:color-mix(in srgb,var(--paper) 88%,transparent);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
 }
-nav.jump a:hover{border-color:var(--ink)}
-
-section{display:flex;flex-direction:column;gap:16px;scroll-margin-top:16px}
-.sec-head{display:flex;flex-direction:column;gap:4px}
-
-/* Pills */
-.pill{
-  display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.03em;text-transform:uppercase;
-  padding:2px 8px;border-radius:999px;white-space:nowrap;
+.nav-inner{max-width:1040px;margin:0 auto;padding:8px 20px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.nav-inner::-webkit-scrollbar{display:none}
+.nav a{
+  flex:none;font-size:.9rem;font-weight:600;text-decoration:none;color:var(--muted);
+  padding:7px 13px;border-radius:999px;border:1px solid transparent;white-space:nowrap;
 }
+.nav a:hover{color:var(--ink);border-color:var(--line)}
+.nav a[aria-current="true"]{color:var(--paper);background:var(--ink)}
+
+/* ---------- Main ---------- */
+main{max-width:1040px;margin:0 auto;padding:36px 20px 72px;display:flex;flex-direction:column;gap:60px}
+section{display:flex;flex-direction:column;gap:20px;scroll-margin-top:64px}
+.sec-head{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:flex-end;justify-content:space-between}
+.sec-head h2{font-size:clamp(1.7rem,4vw,2.3rem)}
+.sec-head p{max-width:60ch}
+.kicker{font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+.pill{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 9px;border-radius:999px;white-space:nowrap}
 .pill.ok{background:var(--ok-bg);color:var(--ok)}
 .pill.warn{background:var(--warn-bg);color:var(--warn)}
 .pill.info{background:var(--info-bg);color:var(--info)}
+.pill.today{background:var(--ink);color:var(--paper)}
 
-/* Checklist */
-.todo{list-style:none;margin:0;padding:0;background:var(--surface);border:1px solid var(--line);border-radius:6px}
-.todo li{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-top:1px solid var(--line)}
+/* Deadline */
+.deadline{
+  display:grid;grid-template-columns:1fr auto;gap:6px 24px;align-items:center;
+  background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--glow);border-radius:12px;padding:18px 20px;
+}
+.deadline h2{font-size:1.35rem}
+.deadline .when{font-family:var(--display);font-size:1.6rem;font-weight:600;color:var(--warn);text-align:right;white-space:nowrap}
+.deadline p{max-width:64ch;color:var(--muted)}
+@media (max-width:640px){.deadline{grid-template-columns:1fr}.deadline .when{text-align:left}}
+
+/* Highlights */
+.moments{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.moment{
+  background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--c);border-radius:10px;
+  padding:14px 16px 16px;display:flex;flex-direction:column;gap:4px;
+}
+.moment .when{font-family:var(--mono);font-size:.76rem;letter-spacing:.06em;text-transform:uppercase;color:var(--c)}
+.moment h3{font-size:1.2rem}
+.moment p{color:var(--muted);font-size:.93rem}
+
+/* To book */
+.ring{position:relative;width:64px;height:64px;flex:none}
+.ring svg{width:64px;height:64px;display:block}
+.ring .track{fill:none;stroke:var(--line);stroke-width:6}
+.ring .prog{fill:none;stroke:var(--ok);stroke-width:6;stroke-linecap:round;transition:stroke-dashoffset .3s}
+.ring span{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--mono);font-size:.8rem;font-weight:500}
+.ring-wrap{display:flex;align-items:center;gap:12px}
+.groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:14px;align-items:start}
+.group{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.group h3{font-family:var(--mono);font-weight:500;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:12px 16px 10px;border-bottom:1px solid var(--line)}
+.todo{list-style:none;margin:0;padding:0}
+.todo li{display:flex;gap:12px;align-items:flex-start;padding:12px 16px;border-top:1px solid var(--line)}
 .todo li:first-child{border-top:0}
-.todo input{width:18px;height:18px;margin:3px 0 0;flex:none;accent-color:var(--ok)}
+.todo input{width:19px;height:19px;margin:2px 0 0;flex:none;accent-color:var(--ok)}
 .todo label{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;cursor:pointer}
-.todo .what{font-weight:500}
+.todo .what{font-weight:600}
 .todo .note{font-size:.875rem;color:var(--muted)}
 .todo input:checked + label .what{text-decoration:line-through;color:var(--muted)}
-.todo .pill{margin-top:2px;flex:none}
-.urgent{
-  border:1px solid var(--warn);background:var(--warn-bg);color:var(--ink);
-  border-radius:6px;padding:12px 14px;
-}
-.urgent strong{color:var(--warn)}
-.progress{font-family:var(--mono);font-size:.8rem;color:var(--muted)}
+.todo .pill{flex:none;margin-top:1px}
 
-/* Flights */
-.flights{display:flex;flex-direction:column;gap:10px}
-.dir{font-family:var(--mono);font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:6px}
-.flight{
-  background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--flight);
-  border-radius:6px;padding:14px 16px;display:flex;flex-direction:column;gap:12px;
+/* Boarding passes */
+.journeys{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:28px}
+.journey{display:flex;flex-direction:column;gap:10px}
+.journey h3{font-size:1.2rem;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.journey h3 span{font-family:var(--body);font-size:.85rem;font-weight:500;color:var(--muted)}
+.pass{
+  position:relative;display:grid;grid-template-columns:1fr 132px;overflow:hidden;
+  background:var(--surface);border:1px solid var(--line);border-radius:14px;
 }
-.f-head{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline;justify-content:space-between}
-.f-no{font-family:var(--mono);font-weight:500;color:var(--flight);font-size:1rem}
-.f-main{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center}
-.f-end{display:flex;flex-direction:column;gap:1px;min-width:0}
-.f-end.arr{text-align:right}
-.f-time{font-family:var(--mono);font-size:1.6rem;font-weight:500;font-variant-numeric:tabular-nums;line-height:1.1}
-.f-code{font-family:var(--display);font-weight:700}
-.f-place{font-size:.85rem;color:var(--muted)}
-.f-mid{display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--muted);font-family:var(--mono);font-size:.8rem;min-width:70px}
-.f-mid::after{content:"";display:block;width:100%;height:1px;background:var(--line)}
-.f-meta{display:flex;flex-wrap:wrap;gap:4px 18px;font-size:.85rem;color:var(--muted);border-top:1px dashed var(--line);padding-top:10px}
-.f-meta b{color:var(--ink);font-weight:500}
-.layover{
-  align-self:center;font-family:var(--mono);font-size:.8rem;color:var(--muted);
-  border:1px dashed var(--line);border-radius:999px;padding:3px 12px;background:var(--paper);
-}
-@media (max-width:460px){
-  .f-time{font-size:1.3rem}
-  .f-mid{min-width:48px}
+.pass-main{padding:14px 18px 16px;display:flex;flex-direction:column;gap:12px;border-top:5px solid var(--flight)}
+.pass-top{display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:.82rem;color:var(--muted)}
+.pass-route{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center}
+.end{display:flex;flex-direction:column;min-width:0}
+.end.arr{text-align:right}
+.code{font-family:var(--display);font-size:2.1rem;font-weight:600;line-height:1;letter-spacing:.01em}
+.time{font-family:var(--mono);font-size:1.05rem;font-weight:500;font-variant-numeric:tabular-nums;color:var(--flight);margin-top:4px}
+.place{font-size:.8rem;color:var(--muted)}
+.mid{display:flex;flex-direction:column;align-items:center;gap:4px;font-family:var(--mono);font-size:.74rem;color:var(--muted);min-width:64px}
+.mid svg{width:18px;height:18px;fill:var(--flight)}
+.mid i{display:block;width:100%;height:0;border-top:2px dotted var(--line)}
+.pass-stub{position:relative;border-left:2px dashed var(--line);border-top:5px solid var(--flight);padding:14px 14px 14px 16px}
+.pass-stub::before,.pass-stub::after{content:"";position:absolute;left:-10px;width:18px;height:18px;border-radius:50%;background:var(--paper);border:1px solid var(--line)}
+.pass-stub::before{top:-14px}
+.pass-stub::after{bottom:-10px}
+.pass-stub dl{margin:0;display:grid;grid-template-columns:1fr;gap:7px}
+.pass-stub dt{font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.pass-stub dd{margin:0;font-weight:600;font-size:.92rem}
+.pass-stub dd.no{font-family:var(--mono);color:var(--flight);font-size:1.05rem}
+.layover{align-self:center;font-family:var(--mono);font-size:.78rem;color:var(--muted);border:1px dashed var(--line);border-radius:999px;padding:3px 14px}
+@media (max-width:480px){
+  .pass{grid-template-columns:1fr}
+  .pass-stub{border-left:0;border-top:2px dashed var(--line);padding:12px 18px}
+  .pass-stub::before,.pass-stub::after{top:-10px;bottom:auto}
+  .pass-stub::before{left:-10px}
+  .pass-stub::after{left:auto;right:-10px}
+  .pass-stub dl{grid-template-columns:repeat(4,auto);justify-content:space-between}
+  .code{font-size:1.7rem}
 }
 
-/* Legs and days */
-.leg{display:flex;flex-direction:column;gap:10px}
-.leg-head{
-  border-left:5px solid var(--c);padding:4px 0 4px 14px;display:flex;flex-direction:column;gap:2px;margin-top:14px;
+/* Chapters */
+.filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.filters button{
+  font:inherit;font-size:.875rem;font-weight:600;color:var(--ink);cursor:pointer;
+  background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 14px;
 }
-.leg-head .stay{font-size:.9rem;color:var(--muted);max-width:64ch}
-.leg-head .stay b{color:var(--ink);font-weight:500}
-.day{
-  display:grid;grid-template-columns:76px 1fr;gap:14px;
-  background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px;
+.filters button:hover{border-color:var(--ink)}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.legs{display:flex;flex-direction:column;gap:40px}
+.leg{display:flex;flex-direction:column;gap:14px;scroll-margin-top:64px;--ch-bg:color-mix(in srgb,var(--c) 9%,var(--surface))}
+.leg[hidden]{display:none}
+.chapter{
+  position:relative;overflow:hidden;background:var(--ch-bg);border:1px solid color-mix(in srgb,var(--c) 30%,var(--line));
+  border-radius:16px;padding:22px 24px 20px;display:grid;grid-template-columns:1fr auto;gap:8px 24px;align-items:end;
 }
-.date{display:flex;flex-direction:column;font-family:var(--mono);line-height:1.2;border-right:1px solid var(--line);padding-right:10px}
-.date .dow{font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
-.date .num{font-size:1.7rem;font-weight:500;color:var(--c);font-variant-numeric:tabular-nums}
-.date .mon{font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
-.day-body{display:flex;flex-direction:column;gap:8px;min-width:0}
+.chapter .kicker{color:var(--c)}
+.ch-city{font-size:clamp(2.3rem,6.5vw,3.6rem);font-weight:600;letter-spacing:-.02em;margin:4px 0 6px}
+.ch-city em{font-style:italic;font-weight:500;color:var(--c)}
+.ch-line{max-width:52ch;font-size:1.05rem}
+.skyline{width:240px;height:120px;color:color-mix(in srgb,var(--c) 78%,var(--ch-bg));fill:currentColor;align-self:end}
+.facts{grid-column:1 / -1;display:flex;flex-wrap:wrap;gap:8px 28px;margin:12px 0 0;padding-top:14px;border-top:1px solid color-mix(in srgb,var(--c) 25%,var(--line))}
+.facts div{display:flex;flex-direction:column}
+.facts dt{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.facts dd{margin:0;font-weight:600}
+@media (max-width:640px){
+  .chapter{grid-template-columns:1fr;padding:18px 18px 16px}
+  .skyline{order:-1;width:150px;height:75px;justify-self:start;margin-bottom:4px}
+}
+.extras{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+.extra{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:.92rem}
+.extra b{display:block;font-family:var(--mono);font-weight:500;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--c);margin-bottom:3px}
+.extra.stay{border-style:dashed}
+
+.days{position:relative;display:flex;flex-direction:column;gap:10px}
+.days::before{content:"";position:absolute;left:39px;top:12px;bottom:12px;width:2px;background:color-mix(in srgb,var(--c) 35%,var(--line))}
+.day{position:relative;display:grid;grid-template-columns:80px 1fr;gap:16px;align-items:start}
+.date{
+  position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;line-height:1.1;
+  background:var(--ch-bg);border:1px solid color-mix(in srgb,var(--c) 35%,var(--line));border-radius:12px;padding:9px 4px 8px;
+}
+.date .dow,.date .mon{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.date .num{font-family:var(--display);font-size:2.2rem;font-weight:600;color:var(--c);font-variant-numeric:tabular-nums}
+.day-body{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 18px 16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.day.travel .day-body{border-style:dashed}
+.day.is-today .day-body{border-color:var(--ink);box-shadow:0 0 0 2px var(--ink)}
 .day-title{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
-.plan{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
-.plan li{display:grid;grid-template-columns:86px 1fr;gap:10px}
-.plan .slot{font-family:var(--mono);font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);padding-top:3px}
+.day-title h4{font-size:1.25rem}
+.day-title svg{width:16px;height:16px;fill:var(--c);flex:none}
+.plan{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px}
+.plan li{display:grid;grid-template-columns:84px 1fr;gap:10px}
+.plan .slot{font-family:var(--mono);font-size:.74rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);padding-top:4px}
 .plan .txt{max-width:62ch}
-.heads{font-size:.875rem;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px;max-width:66ch}
-.heads b{color:var(--ink);font-weight:500}
-@media (max-width:520px){
-  .day{grid-template-columns:1fr;gap:10px}
-  .date{flex-direction:row;gap:8px;align-items:baseline;border-right:0;border-bottom:1px solid var(--line);padding:0 0 8px}
-  .date .num{font-size:1.3rem}
+.heads{font-size:.875rem;color:var(--muted);border-top:1px dashed var(--line);padding-top:9px;max-width:68ch}
+.heads b{color:var(--ink);font-weight:600}
+@media (max-width:560px){
+  .days::before{display:none}
+  .day{grid-template-columns:1fr;gap:6px}
+  .date{flex-direction:row;gap:8px;align-items:baseline;justify-content:flex-start;padding:6px 12px;align-self:start;width:max-content}
+  .date .num{font-size:1.4rem}
   .plan li{grid-template-columns:1fr;gap:0}
+  .plan .slot{padding-top:0}
 }
 
-/* Notes grid */
+/* Before you fly */
+.clocks{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}
+.clock{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px;display:flex;flex-direction:column}
+.clock .where{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.clock .t{font-family:var(--display);font-size:2rem;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.15}
+.clock .d{font-size:.85rem;color:var(--muted)}
 .notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
-.note-card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px;display:flex;flex-direction:column;gap:6px}
-.note-card p{font-size:.92rem}
+.note-card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:6px}
+.note-card h3{font-size:1.15rem}
+.note-card p{font-size:.93rem}
 .note-card p + p{color:var(--muted)}
-
-table.wx{width:100%;border-collapse:collapse;font-size:.9rem}
-table.wx th,table.wx td{text-align:left;padding:6px 8px;border-top:1px solid var(--line)}
+.scroll{overflow-x:auto}
+table.wx{width:100%;border-collapse:collapse;font-size:.92rem}
+table.wx th,table.wx td{text-align:left;padding:7px 8px;border-top:1px solid var(--line)}
 table.wx thead th{border-top:0;font-weight:500;color:var(--muted);font-size:.8rem}
 table.wx td.mono{white-space:nowrap}
-.scroll{overflow-x:auto}
 
-footer{border-top:1px solid var(--line);padding-top:18px;display:flex;flex-direction:column;gap:8px;font-size:.85rem;color:var(--muted)}
+footer{max-width:1040px;margin:0 auto;padding:22px 20px 48px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:8px;font-size:.85rem;color:var(--muted)}
 footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:2px}
+
+@media print{
+  .nav,.filters,#snow{display:none}
+  .hero{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .day,.pass,.group,.moment{break-inside:avoid}
+}
 </style>
 </head>
 <body>
-<div class="wrap">
 
-<header class="top">
-  <div class="eyebrow">Family trip · Sat 19 Dec 2026 to Sun 3 Jan 2027</div>
-  <h1>London, Barcelona, Lisbon, and back to London for New Year</h1>
-  <p class="lede">Mum, Dad and sister fly Kuala Lumpur to London and home again with Qatar Airways. <strong>Those four flights are fixed.</strong> Everything between them is a suggested plan built around Christmas closures and New Year's Eve in London. The London hotel for the first two nights is booked; nothing in Spain or Portugal is booked yet.</p>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="plane" viewBox="0 0 24 24"><path d="M2 12 22 3l-7 19-3-8z"/></symbol>
+  <symbol id="sky-london" viewBox="0 0 240 120">
+    <path d="M28 30 38 6l10 24z"/>
+    <rect x="30" y="30" width="16" height="90"/>
+    <circle cx="38" cy="44" r="5" style="fill:var(--ch-bg)"/>
+    <rect x="46" y="82" width="56" height="38"/>
+    <path d="M52 82V72h4v10zM72 82V72h4v10zM92 82V72h4v10z"/>
+    <circle cx="158" cy="64" r="42" fill="none" stroke="currentColor" stroke-width="3"/>
+    <path d="M116 64h84M158 22v84M128.3 34.3l59.4 59.4M187.7 34.3l-59.4 59.4" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <path d="M158 64 140 120M158 64l18 56" fill="none" stroke="currentColor" stroke-width="3"/>
+    <rect x="0" y="117" width="240" height="3"/>
+  </symbol>
+  <symbol id="sky-fireworks" viewBox="0 0 240 120">
+    <path d="M101 20h8M89 20h-8M95 26v8M95 14V6M99 24l6 6M91 24l-6 6M99 16l6-6M91 16l-6-6M225 34h8M213 34h-8M219 40v8M219 28v-8M223 38l6 6M215 38l-6 6M223 30l6-6M215 30l-6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="sky-barcelona" viewBox="0 0 240 120">
+    <path d="M58 120l4-68 4-22 4 22 4 68zM80 120l4-80 4-24 4 24 4 80zM104 120l6-86 4-30 4 30 6 86zM132 120l4-80 4-24 4 24 4 80zM154 120l4-68 4-22 4 22 4 68z"/>
+    <rect x="52" y="94" width="124" height="26"/>
+    <circle cx="212" cy="28" r="13"/>
+    <rect x="0" y="117" width="240" height="3"/>
+  </symbol>
+  <symbol id="sky-lisbon" viewBox="0 0 240 120">
+    <rect x="62" y="24" width="6" height="68"/>
+    <rect x="172" y="24" width="6" height="68"/>
+    <rect x="0" y="74" width="240" height="4"/>
+    <path d="M0 66Q36 60 65 28Q120 112 175 28Q204 60 240 66" fill="none" stroke="currentColor" stroke-width="2.5"/>
+    <path d="M30 56v18M85 53v21M100 64v10M120 70v4M140 64v10M155 53v21M210 56v18" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <path d="M0 102q10-6 20 0t20 0 20 0 20 0 20 0 20 0 20 0 20 0 20 0 20 0 20 0 20 0M10 113q10-6 20 0t20 0 20 0 20 0 20 0 20 0 20 0 20 0 20 0 20 0 20 0" fill="none" stroke="currentColor" stroke-width="2"/>
+  </symbol>
+</svg>
 
-  <div class="route" aria-label="Route overview">
-    <div class="seg" style="--n:2;--c:var(--london)">
-      <span class="city">London</span>
-      <span class="when">20 to 22 Dec</span>
-      <span class="nights">2 nights</span>
+<header class="hero">
+  <canvas id="snow" aria-hidden="true"></canvas>
+  <div class="hero-inner">
+    <div>
+      <p class="eyebrow">Family winter trip · 19 Dec 2026 to 3 Jan 2027</p>
+      <h1>Christmas in <em class="bcn">Barcelona</em>, New Year in <em class="lon">London</em>, and <em class="lis">Lisbon</em> in between.</h1>
+      <p class="lede">Mum, Dad and sister fly in from Kuala Lumpur for sixteen days. <strong>The four Qatar flights are fixed.</strong> Everything between them is a plan built around Christmas closures and midnight on the Thames.</p>
+
+      <div class="count">
+        <div class="count-units" id="cd-units">
+          <div class="unit"><span class="n" id="cd-d">32</span><span class="l">days</span></div>
+          <div class="unit"><span class="n" id="cd-h">13</span><span class="l">hours</span></div>
+          <div class="unit"><span class="n" id="cd-m">41</span><span class="l">minutes</span></div>
+        </div>
+        <div class="count-big" id="cd-big" hidden></div>
+        <p class="count-label" id="cd-label">until QR4990 leaves Kuala Lumpur on Saturday 19 December at 21:15</p>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><b>16</b><span>days</span></div>
+        <div class="stat"><b>13</b><span>nights</span></div>
+        <div class="stat"><b>3</b><span>cities</span></div>
+        <div class="stat"><b>7</b><span>flights</span></div>
+      </div>
     </div>
-    <div class="seg" style="--n:4;--c:var(--barcelona)">
-      <span class="city">Barcelona</span>
-      <span class="when">22 to 26 Dec</span>
-      <span class="nights">4 nights, Christmas</span>
-    </div>
-    <div class="seg" style="--n:4;--c:var(--lisbon)">
-      <span class="city">Lisbon</span>
-      <span class="when">26 to 30 Dec</span>
-      <span class="nights">4 nights, with Sintra</span>
-    </div>
-    <div class="seg" style="--n:3;--c:var(--london)">
-      <span class="city">London</span>
-      <span class="when">30 Dec to 2 Jan</span>
-      <span class="nights">3 nights, New Year</span>
-    </div>
+
+    <svg class="map" viewBox="0 0 460 330" role="img" aria-label="Route map: Kuala Lumpur to London, then Barcelona, Lisbon and back to London">
+      <path class="grat" d="M0 96Q230 62 460 96M0 176Q230 142 460 176M0 256Q230 222 460 256M120 0Q100 165 120 330M330 0Q350 165 330 330"/>
+      <path class="leg inbound" d="M454 150C392 92 302 62 224 70"/>
+      <path class="leg" d="M215 70Q310 120 330 235"/>
+      <path class="leg" d="M330 235Q215 300 95 262"/>
+      <path class="leg" d="M95 262Q95 130 215 70"/>
+      <text class="t-date" x="454" y="170" text-anchor="end">from Kuala Lumpur</text>
+      <text class="t-date" x="454" y="184" text-anchor="end">via Doha, 20 Dec</text>
+      <text class="t-leg" x="302" y="130">22 Dec</text>
+      <text class="t-leg" x="214" y="298" text-anchor="middle">26 Dec</text>
+      <text class="t-leg" x="84" y="150" text-anchor="end">30 Dec</text>
+      <circle cx="215" cy="70" r="8" fill="#f7939a"/><circle cx="215" cy="70" r="14" fill="none" stroke="#f7939a" stroke-opacity=".45"/>
+      <circle cx="330" cy="235" r="8" fill="#f6c15c"/>
+      <circle cx="95" cy="262" r="8" fill="#86c8f5"/>
+      <text class="t-date" x="215" y="24" text-anchor="middle">20–22 Dec · 30 Dec–2 Jan</text>
+      <text class="t-city" x="215" y="46" text-anchor="middle">London</text>
+      <text class="t-city" x="346" y="240">Barcelona</text>
+      <text class="t-date" x="346" y="256">22–26 Dec</text>
+      <text class="t-city" x="95" y="292" text-anchor="middle">Lisbon</text>
+      <text class="t-date" x="95" y="308" text-anchor="middle">26–30 Dec</text>
+    </svg>
   </div>
-
-  <nav class="jump" aria-label="Sections">
-    <a href="#to-book">To book</a>
-    <a href="#flights">Qatar flights</a>
-    <a href="#days">Day by day</a>
-    <a href="#before-you-fly">Before you fly</a>
-  </nav>
 </header>
+
+<nav class="nav" aria-label="Sections">
+  <div class="nav-inner">
+    <a href="#to-book">To book</a>
+    <a href="#flights">Flights</a>
+    <a href="#london">London</a>
+    <a href="#barcelona">Barcelona</a>
+    <a href="#lisbon">Lisbon</a>
+    <a href="#new-year">New Year</a>
+    <a href="#before-you-fly">Before you fly</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- NEXT DEADLINE -->
+<section aria-labelledby="deadline-h" style="gap:14px">
+  <div class="deadline">
+    <div>
+      <p class="kicker">Next deadline</p>
+      <h2 id="deadline-h">New Year's Eve fireworks tickets</h2>
+    </div>
+    <div class="when" id="sale-count">Fri 20 Nov, 12 noon</div>
+    <p style="grid-column:1 / -1">The final batch goes on sale on Friday 20 November at 12 noon. One person can buy up to four, which covers everyone. Nobody gets into the riverside viewing areas without one. <a href="https://www.london.gov.uk/NYE">Ticket page</a></p>
+  </div>
+</section>
+
+<!-- MOMENTS -->
+<section aria-labelledby="moments-h">
+  <div class="sec-head">
+    <h2 id="moments-h">Six moments to look forward to</h2>
+  </div>
+  <div class="moments">
+    <article class="moment" style="--c:var(--london)"><span class="when">Sun 20 Dec · London</span><h3>Greenwich by river</h3><p>Cable car over the Thames, then the boat down to the Cutty Sark.</p></article>
+    <article class="moment" style="--c:var(--london)"><span class="when">Mon 21 Dec · London</span><h3>The West End after dark</h3><p>Christmas lights overhead and the big tree at Covent Garden.</p></article>
+    <article class="moment" style="--c:var(--barcelona)"><span class="when">Wed 23 Dec · Barcelona</span><h3>Inside the Sagrada Família</h3><p>Coloured light pouring through the stained glass.</p></article>
+    <article class="moment" style="--c:var(--barcelona)"><span class="when">Fri 25 Dec · Barcelona</span><h3>Christmas lunch by the sea</h3><p>A long table, then sunset over the harbour from Montjuïc.</p></article>
+    <article class="moment" style="--c:var(--lisbon)"><span class="when">Mon 28 Dec · Sintra</span><h3>Pena Palace</h3><p>A red and yellow palace on a misty hilltop above the forest.</p></article>
+    <article class="moment" style="--c:var(--london)"><span class="when">Thu 31 Dec · London</span><h3>Midnight on the Thames</h3><p>Big Ben strikes twelve and the London Eye lights up.</p></article>
+  </div>
+</section>
 
 <!-- TO BOOK -->
 <section id="to-book">
   <div class="sec-head">
-    <h2>To book</h2>
-    <p class="muted small">Tick things off as you go. Ticks are saved in this browser only. <span class="progress" id="progress"></span></p>
+    <div>
+      <h2>To book</h2>
+      <p class="muted small">Tick things off as you go. Ticks are saved in this browser only.</p>
+    </div>
+    <div class="ring-wrap">
+      <div class="ring">
+        <svg viewBox="0 0 64 64" aria-hidden="true"><circle class="track" cx="32" cy="32" r="26"/><circle class="prog" id="ring-prog" cx="32" cy="32" r="26" transform="rotate(-90 32 32)" stroke-dasharray="163.4" stroke-dashoffset="138.3"/></svg>
+        <span id="ring-text">2/13</span>
+      </div>
+      <span class="small muted" id="ring-label">2 of 13 done</span>
+    </div>
   </div>
 
-  <p class="urgent"><strong>First deadline: Friday 20 November, 12 noon.</strong> The second and final batch of New Year's Eve fireworks tickets goes on sale on Ticketmaster. One person can buy up to four, which covers the whole family. You cannot enter the viewing areas without a ticket.</p>
+  <div class="groups">
+    <div class="group">
+      <h3>This week</h3>
+      <ul class="todo">
+        <li>
+          <input type="checkbox" id="c-nye">
+          <label for="c-nye"><span class="what">New Year's Eve fireworks tickets</span><span class="note">On sale Fri 20 Nov at 12 noon. £40 to £55 each, or £20 to £35 with a London billing postcode. Decide first whether your sister should come: the organisers advise against bringing young children, and under-16s need an adult.</span></label>
+          <span class="pill warn">20 Nov</span>
+        </li>
+        <li>
+          <input type="checkbox" id="c-eta">
+          <label for="c-eta"><span class="what">UK ETA for each traveller</span><span class="note">Needed before boarding on a Malaysian passport. Details under Before you fly.</span></label>
+          <span class="pill info">Check</span>
+        </li>
+      </ul>
+    </div>
 
-  <ul class="todo">
-    <li>
-      <input type="checkbox" id="c-qatar" checked>
-      <label for="c-qatar"><span class="what">Qatar Airways flights, Kuala Lumpur to London and back</span><span class="note">Four flights, all confirmed (status OK).</span></label>
-      <span class="pill ok">Booked</span>
-    </li>
-    <li>
-      <input type="checkbox" id="c-hotel-lon1" checked>
-      <label for="c-hotel-lon1"><span class="what">London hotel, 20 to 22 Dec</span><span class="note">London Docklands (Canning Town), family room. Free cancellation until 1pm on arrival day. Booking reference is in the confirmation email.</span></label>
-      <span class="pill ok">Booked</span>
-    </li>
-    <li>
-      <input type="checkbox" id="c-nye">
-      <label for="c-nye"><span class="what">New Year's Eve fireworks tickets</span><span class="note">On sale Fri 20 Nov at 12 noon. £40 to £55 each, or £20 to £35 with a London billing postcode. Decide first whether your sister should come: the organisers advise against bringing young children, and under-16s need an adult.</span></label>
-      <span class="pill warn">20 Nov</span>
-    </li>
-    <li>
-      <input type="checkbox" id="c-eta">
-      <label for="c-eta"><span class="what">UK ETA for each traveller</span><span class="note">Needed before boarding if they travel on Malaysian passports. Details under Before you fly.</span></label>
-      <span class="pill info">Check</span>
-    </li>
-    <li>
-      <input type="checkbox" id="c-fl-bcn">
-      <label for="c-fl-bcn"><span class="what">Flight London to Barcelona, Tue 22 Dec</span><span class="note">British Airways from London City (closest to the hotel, limited schedule) or Heathrow; Vueling from Gatwick. About 2h10.</span></label>
-      <span class="pill warn">To book</span>
-    </li>
-    <li>
-      <input type="checkbox" id="c-fl-lis">
-      <label for="c-fl-lis"><span class="what">Flight Barcelona to Lisbon, Sat 26 Dec</span><span class="note">Direct with TAP, Vueling, easyJet or Ryanair. About 2 hours.</span></label>
-      <span class="pill warn">To book</span>
-    </li>
-    <li>
-      <input type="checkbox" id="c-fl-lon">
-      <label for="c-fl-lon"><span class="what">Flight Lisbon to London, Wed 30 Dec</span><span class="note">TAP or British Airways to Heathrow, easyJet to Gatwick or Luton, Ryanair to Stansted. About 2h50.</span></label>
-      <span class="pill warn">To book</span>
-    </li>
-    <li>
-      <input type="checkbox" id="c-hotel-bcn">
-      <label for="c-hotel-bcn"><span class="what">Barcelona hotel, 22 to 26 Dec (4 nights)</span><span class="note">Eixample, near Passeig de Gràcia: flat, central, on the metro.</span></label>
-      <span class="pill warn">To book</span>
-    </li>
-    <li>
-      <input type="checkbox" id="c-hotel-lis">
-      <label for="c-hotel-lis"><span class="what">Lisbon hotel, 26 to 30 Dec (4 nights)</span><span class="note">Baixa or Chiado keeps the walking flat. The rest of the city is steep.</span></label>
-      <span class="pill warn">To book</span>
-    </li>
-    <li>
-      <input type="checkbox" id="c-hotel-lon2">
-      <label for="c-hotel-lon2"><span class="what">London hotel, 30 Dec to 2 Jan (3 nights)</span><span class="note">New Year prices rise fast. Pick somewhere central you can walk back to after midnight.</span></label>
-      <span class="pill warn">To book</span>
-    </li>
-    <li>
-      <input type="checkbox" id="c-sagrada">
-      <label for="c-sagrada"><span class="what">Timed tickets: Sagrada Família (23 Dec) and Park Güell (24 Dec)</span><span class="note">Christmas week sells out. Book as soon as the Barcelona dates are fixed.</span></label>
-      <span class="pill warn">To book</span>
-    </li>
-    <li>
-      <input type="checkbox" id="c-meals">
-      <label for="c-meals"><span class="what">Restaurant tables: 24 Dec dinner and 25 Dec lunch in Barcelona</span><span class="note">Many restaurants close on both days, and the ones that open fill up.</span></label>
-      <span class="pill warn">To book</span>
-    </li>
-    <li>
-      <input type="checkbox" id="c-lisbon-tix">
-      <label for="c-lisbon-tix"><span class="what">Timed tickets: Pena Palace in Sintra (28 Dec) and Belém Tower (29 Dec)</span><span class="note">Belém Tower now limits visitors each day.</span></label>
-      <span class="pill warn">To book</span>
-    </li>
-  </ul>
+    <div class="group">
+      <h3>Flights</h3>
+      <ul class="todo">
+        <li>
+          <input type="checkbox" id="c-qatar" checked>
+          <label for="c-qatar"><span class="what">Qatar Airways, Kuala Lumpur to London and back</span><span class="note">Four flights, all confirmed.</span></label>
+          <span class="pill ok">Booked</span>
+        </li>
+        <li>
+          <input type="checkbox" id="c-fl-bcn">
+          <label for="c-fl-bcn"><span class="what">London to Barcelona, Tue 22 Dec</span><span class="note">British Airways from London City (closest to the hotel, limited schedule) or Heathrow; Vueling from Gatwick. About 2h 10m.</span></label>
+          <span class="pill warn">To book</span>
+        </li>
+        <li>
+          <input type="checkbox" id="c-fl-lis">
+          <label for="c-fl-lis"><span class="what">Barcelona to Lisbon, Sat 26 Dec</span><span class="note">Direct with TAP, Vueling, easyJet or Ryanair. About 2 hours.</span></label>
+          <span class="pill warn">To book</span>
+        </li>
+        <li>
+          <input type="checkbox" id="c-fl-lon">
+          <label for="c-fl-lon"><span class="what">Lisbon to London, Wed 30 Dec</span><span class="note">TAP or British Airways to Heathrow, easyJet to Gatwick or Luton, Ryanair to Stansted. About 2h 50m.</span></label>
+          <span class="pill warn">To book</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="group">
+      <h3>Hotels</h3>
+      <ul class="todo">
+        <li>
+          <input type="checkbox" id="c-hotel-lon1" checked>
+          <label for="c-hotel-lon1"><span class="what">London, 20 to 22 Dec</span><span class="note">London Docklands by Canning Town station, family room. Free cancellation until 1pm on arrival day. Booking reference is in the confirmation email.</span></label>
+          <span class="pill ok">Booked</span>
+        </li>
+        <li>
+          <input type="checkbox" id="c-hotel-bcn">
+          <label for="c-hotel-bcn"><span class="what">Barcelona, 22 to 26 Dec (4 nights)</span><span class="note">Eixample, near Passeig de Gràcia: flat, central, on the metro.</span></label>
+          <span class="pill warn">To book</span>
+        </li>
+        <li>
+          <input type="checkbox" id="c-hotel-lis">
+          <label for="c-hotel-lis"><span class="what">Lisbon, 26 to 30 Dec (4 nights)</span><span class="note">Baixa or Chiado keeps the walking flat. The rest of the city is steep.</span></label>
+          <span class="pill warn">To book</span>
+        </li>
+        <li>
+          <input type="checkbox" id="c-hotel-lon2">
+          <label for="c-hotel-lon2"><span class="what">London, 30 Dec to 2 Jan (3 nights)</span><span class="note">New Year prices rise fast. Pick somewhere central you can walk back to after midnight.</span></label>
+          <span class="pill warn">To book</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="group">
+      <h3>Tickets and tables</h3>
+      <ul class="todo">
+        <li>
+          <input type="checkbox" id="c-sagrada">
+          <label for="c-sagrada"><span class="what">Sagrada Família (23 Dec) and Park Güell (24 Dec)</span><span class="note">Timed tickets. Christmas week sells out, so book once the Barcelona dates are fixed.</span></label>
+          <span class="pill warn">To book</span>
+        </li>
+        <li>
+          <input type="checkbox" id="c-meals">
+          <label for="c-meals"><span class="what">Barcelona tables: 24 Dec dinner and 25 Dec lunch</span><span class="note">Many restaurants close on both days, and the ones that open fill up.</span></label>
+          <span class="pill warn">To book</span>
+        </li>
+        <li>
+          <input type="checkbox" id="c-lisbon-tix">
+          <label for="c-lisbon-tix"><span class="what">Pena Palace (28 Dec) and Belém Tower (29 Dec)</span><span class="note">Timed tickets. Belém Tower now limits visitors each day.</span></label>
+          <span class="pill warn">To book</span>
+        </li>
+      </ul>
+    </div>
+  </div>
 </section>
 
 <!-- FLIGHTS -->
 <section id="flights">
   <div class="sec-head">
-    <h2>Qatar flights</h2>
-    <p class="muted small">All times are local to each airport.</p>
+    <div>
+      <h2>The long flights</h2>
+      <p class="muted small">Qatar Airways, all four confirmed. Times are local to each airport.</p>
+    </div>
   </div>
 
-  <div class="flights">
-    <div class="dir">Outbound · Business · 40 kg each</div>
+  <div class="journeys">
+    <div class="journey">
+      <h3>Outbound <span>Business · 40 kg each</span></h3>
+      <article class="pass">
+        <div class="pass-main">
+          <div class="pass-top"><span>Operated by Malaysia Airlines</span><span class="pill ok">Confirmed</span></div>
+          <div class="pass-route">
+            <div class="end"><span class="code">KUL</span><span class="time">21:15</span><span class="place">Kuala Lumpur, Terminal 1</span></div>
+            <div class="mid"><svg aria-hidden="true"><use href="#plane"/></svg><i></i><span>7h 25m</span></div>
+            <div class="end arr"><span class="code">DOH</span><span class="time">23:40</span><span class="place">Doha Hamad</span></div>
+          </div>
+        </div>
+        <div class="pass-stub"><dl><div><dt>Flight</dt><dd class="no">QR4990</dd></div><div><dt>Date</dt><dd>Sat 19 Dec</dd></div><div><dt>Fare</dt><dd>Business Classic</dd></div></dl></div>
+      </article>
+      <div class="layover">3h 55m in Doha</div>
+      <article class="pass">
+        <div class="pass-main">
+          <div class="pass-top"><span>Operated by Qatar Airways</span><span class="pill ok">Confirmed</span></div>
+          <div class="pass-route">
+            <div class="end"><span class="code">DOH</span><span class="time">03:35</span><span class="place">Doha Hamad</span></div>
+            <div class="mid"><svg aria-hidden="true"><use href="#plane"/></svg><i></i><span>7h 25m</span></div>
+            <div class="end arr"><span class="code">LHR</span><span class="time">08:00</span><span class="place">Heathrow, Terminal 4</span></div>
+          </div>
+        </div>
+        <div class="pass-stub"><dl><div><dt>Flight</dt><dd class="no">QR119</dd></div><div><dt>Date</dt><dd>Sun 20 Dec</dd></div><div><dt>Fare</dt><dd>Business Classic</dd></div></dl></div>
+      </article>
+    </div>
 
-    <article class="flight">
-      <div class="f-head"><span class="f-no">QR4990</span><span class="small muted">Sat 19 Dec 2026</span></div>
-      <div class="f-main">
-        <div class="f-end"><span class="f-time">21:15</span><span class="f-code">KUL</span><span class="f-place">Kuala Lumpur Intl, Terminal 1</span></div>
-        <div class="f-mid">7h 25m</div>
-        <div class="f-end arr"><span class="f-time">23:40</span><span class="f-code">DOH</span><span class="f-place">Doha Hamad Intl</span></div>
-      </div>
-      <div class="f-meta"><span><b>Operated by</b> Malaysia Airlines</span><span><b>Fare</b> Business Classic (R)</span><span class="pill ok">Confirmed</span></div>
-    </article>
-
-    <div class="layover">3h 55m in Doha</div>
-
-    <article class="flight">
-      <div class="f-head"><span class="f-no">QR119</span><span class="small muted">Sun 20 Dec 2026</span></div>
-      <div class="f-main">
-        <div class="f-end"><span class="f-time">03:35</span><span class="f-code">DOH</span><span class="f-place">Doha Hamad Intl</span></div>
-        <div class="f-mid">7h 25m</div>
-        <div class="f-end arr"><span class="f-time">08:00</span><span class="f-code">LHR</span><span class="f-place">London Heathrow, Terminal 4</span></div>
-      </div>
-      <div class="f-meta"><span><b>Operated by</b> Qatar Airways</span><span><b>Fare</b> Business Classic (R)</span><span class="pill ok">Confirmed</span></div>
-    </article>
-
-    <div class="dir">Return · Economy · 30 kg each</div>
-
-    <article class="flight">
-      <div class="f-head"><span class="f-no">QR8</span><span class="small muted">Sat 2 Jan 2027</span></div>
-      <div class="f-main">
-        <div class="f-end"><span class="f-time">14:55</span><span class="f-code">LHR</span><span class="f-place">London Heathrow, Terminal 4</span></div>
-        <div class="f-mid">6h 45m</div>
-        <div class="f-end arr"><span class="f-time">00:40</span><span class="f-code">DOH</span><span class="f-place">Doha Hamad Intl, Sun 3 Jan</span></div>
-      </div>
-      <div class="f-meta"><span><b>Operated by</b> Qatar Airways</span><span><b>Fare</b> Economy Convenience (L)</span><span class="pill ok">Confirmed</span></div>
-    </article>
-
-    <div class="layover">1h 40m in Doha</div>
-
-    <article class="flight">
-      <div class="f-head"><span class="f-no">QR852</span><span class="small muted">Sun 3 Jan 2027</span></div>
-      <div class="f-main">
-        <div class="f-end"><span class="f-time">02:20</span><span class="f-code">DOH</span><span class="f-place">Doha Hamad Intl</span></div>
-        <div class="f-mid">7h 20m</div>
-        <div class="f-end arr"><span class="f-time">14:40</span><span class="f-code">KUL</span><span class="f-place">Kuala Lumpur Intl, Terminal 1</span></div>
-      </div>
-      <div class="f-meta"><span><b>Operated by</b> Qatar Airways</span><span><b>Fare</b> Economy Convenience (L)</span><span class="pill ok">Confirmed</span></div>
-    </article>
+    <div class="journey">
+      <h3>Return <span>Economy · 30 kg each</span></h3>
+      <article class="pass">
+        <div class="pass-main">
+          <div class="pass-top"><span>Operated by Qatar Airways</span><span class="pill ok">Confirmed</span></div>
+          <div class="pass-route">
+            <div class="end"><span class="code">LHR</span><span class="time">14:55</span><span class="place">Heathrow, Terminal 4</span></div>
+            <div class="mid"><svg aria-hidden="true"><use href="#plane"/></svg><i></i><span>6h 45m</span></div>
+            <div class="end arr"><span class="code">DOH</span><span class="time">00:40</span><span class="place">Doha Hamad, Sun 3 Jan</span></div>
+          </div>
+        </div>
+        <div class="pass-stub"><dl><div><dt>Flight</dt><dd class="no">QR8</dd></div><div><dt>Date</dt><dd>Sat 2 Jan</dd></div><div><dt>Fare</dt><dd>Economy Convenience</dd></div></dl></div>
+      </article>
+      <div class="layover">1h 40m in Doha</div>
+      <article class="pass">
+        <div class="pass-main">
+          <div class="pass-top"><span>Operated by Qatar Airways</span><span class="pill ok">Confirmed</span></div>
+          <div class="pass-route">
+            <div class="end"><span class="code">DOH</span><span class="time">02:20</span><span class="place">Doha Hamad</span></div>
+            <div class="mid"><svg aria-hidden="true"><use href="#plane"/></svg><i></i><span>7h 20m</span></div>
+            <div class="end arr"><span class="code">KUL</span><span class="time">14:40</span><span class="place">Kuala Lumpur, Terminal 1</span></div>
+          </div>
+        </div>
+        <div class="pass-stub"><dl><div><dt>Flight</dt><dd class="no">QR852</dd></div><div><dt>Date</dt><dd>Sun 3 Jan</dd></div><div><dt>Fare</dt><dd>Economy Convenience</dd></div></dl></div>
+      </article>
+    </div>
   </div>
-
-  <p class="small muted">The return connection in Doha is short at 1h 40m. Both flights are on one ticket, so Qatar rebooks you if the first one runs late. The baggage allowance is 10 kg lower on the way home.</p>
+  <p class="small muted" style="max-width:70ch">The return connection in Doha is short at 1h 40m. Both flights are on one ticket, so Qatar rebooks you if the first one runs late. The baggage allowance is 10 kg lower on the way home.</p>
 </section>
 
 <!-- DAY BY DAY -->
 <section id="days">
   <div class="sec-head">
-    <h2>Day by day</h2>
-    <p class="muted small">One main thing each morning and afternoon, with slack for jet lag and winter daylight.</p>
+    <div>
+      <h2>Day by day</h2>
+      <p class="muted small">One main thing each morning and afternoon, with slack for jet lag and short winter days.</p>
+    </div>
+    <div class="filters" role="group" aria-label="Show stops">
+      <button type="button" data-filter="all" aria-pressed="true">All stops</button>
+      <button type="button" data-filter="london" aria-pressed="false">London</button>
+      <button type="button" data-filter="barcelona" aria-pressed="false">Barcelona</button>
+      <button type="button" data-filter="lisbon" aria-pressed="false">Lisbon</button>
+    </div>
   </div>
 
+  <div class="legs">
+
   <!-- Departure -->
-  <div class="leg" style="--c:var(--flight)">
-    <article class="day">
-      <div class="date"><span class="dow">Sat</span><span class="num">19</span><span class="mon">Dec</span></div>
-      <div class="day-body">
-        <div class="day-title"><h3>Leave Kuala Lumpur</h3></div>
-        <ul class="plan">
-          <li><span class="slot">21:15</span><span class="txt">QR4990 from KLIA Terminal 1 to Doha, then QR119 on to London overnight.</span></li>
-        </ul>
-      </div>
-    </article>
+  <div class="leg" data-city="travel" style="--c:var(--flight)">
+    <div class="days">
+      <article class="day travel" data-date="2026-12-19">
+        <div class="date"><span class="dow">Sat</span><span class="num">19</span><span class="mon">Dec</span></div>
+        <div class="day-body">
+          <div class="day-title"><svg aria-hidden="true"><use href="#plane"/></svg><h4>Leave Kuala Lumpur</h4></div>
+          <ul class="plan">
+            <li><span class="slot">21:15</span><span class="txt">QR4990 from KLIA Terminal 1 to Doha, then QR119 on to London overnight.</span></li>
+          </ul>
+        </div>
+      </article>
+    </div>
   </div>
 
   <!-- London 1 -->
-  <div class="leg" style="--c:var(--london)">
-    <div class="leg-head">
-      <h3>London, first stop</h3>
-      <p class="stay"><b>Stay (booked):</b> London Docklands hotel by Canning Town station. Two nights, family room.</p>
+  <div class="leg" id="london" data-city="london" style="--c:var(--london)">
+    <header class="chapter">
+      <div>
+        <p class="kicker">Stop 1 of 4 · Sun 20 to Tue 22 Dec · 2 nights</p>
+        <h3 class="ch-city">London, <em>hello</em></h3>
+        <p class="ch-line">Land, shake off the flight, and see the postcard sights dressed for Christmas.</p>
+      </div>
+      <svg class="skyline" aria-hidden="true"><use href="#sky-london"/></svg>
+      <dl class="facts">
+        <div><dt>Weather</dt><dd>3 to 8 °C</dd></div>
+        <div><dt>Clock</dt><dd>8 hours behind KL</dd></div>
+        <div><dt>Dark by</dt><dd>4pm</dd></div>
+        <div><dt>Getting around</dt><dd>Tube and DLR, tap a bank card</dd></div>
+      </dl>
+    </header>
+    <div class="extras">
+      <div class="extra stay"><b>Stay · booked</b>London Docklands hotel by Canning Town station. Two nights, family room.</div>
+      <div class="extra"><b>Taste</b>Fish and chips, mince pies, a hot chocolate at Covent Garden.</div>
+      <div class="extra"><b>If it rains</b>The Natural History Museum or the Science Museum in South Kensington. Both free.</div>
     </div>
+    <div class="days">
+      <article class="day" data-date="2026-12-20">
+        <div class="date"><span class="dow">Sun</span><span class="num">20</span><span class="mon">Dec</span></div>
+        <div class="day-body">
+          <div class="day-title"><h4>Land and take it easy</h4></div>
+          <ul class="plan">
+            <li><span class="slot">08:00</span><span class="txt">Land at Heathrow Terminal 4. Allow about an hour for the border and bags.</span></li>
+            <li><span class="slot">Morning</span><span class="txt">Elizabeth line to Custom House, then two stops on the DLR to Canning Town. Around 1h 15m in all. With three large suitcases, a pre-booked car is easier.</span></li>
+            <li><span class="slot">Midday</span><span class="txt">Leave the bags at the hotel. Rooms are usually ready from mid-afternoon.</span></li>
+            <li><span class="slot">Afternoon</span><span class="txt">Cable car across the Thames from Royal Docks, then the riverboat on to Greenwich: the Cutty Sark, the covered market, and the view from the Royal Observatory hill.</span></li>
+            <li><span class="slot">Evening</span><span class="txt">Early dinner near the hotel and an early night.</span></li>
+          </ul>
+          <p class="heads"><b>Keep it light.</b> Everyone has just flown overnight across eight time zones.</p>
+        </div>
+      </article>
 
-    <article class="day">
-      <div class="date"><span class="dow">Sun</span><span class="num">20</span><span class="mon">Dec</span></div>
-      <div class="day-body">
-        <div class="day-title"><h3>Land and take it easy</h3></div>
-        <ul class="plan">
-          <li><span class="slot">08:00</span><span class="txt">Land at Heathrow Terminal 4. Allow about an hour for the border and bags.</span></li>
-          <li><span class="slot">Morning</span><span class="txt">Elizabeth line to Custom House, then two stops on the DLR to Canning Town. Around 1h 15m in all. With three large suitcases, a pre-booked car is easier.</span></li>
-          <li><span class="slot">Midday</span><span class="txt">Leave the bags at the hotel. Rooms are usually ready from mid-afternoon.</span></li>
-          <li><span class="slot">Afternoon</span><span class="txt">Cable car across the Thames from Royal Docks, then the riverboat on to Greenwich: the Cutty Sark, the covered market, and the view from the Royal Observatory hill.</span></li>
-          <li><span class="slot">Evening</span><span class="txt">Early dinner near the hotel and an early night.</span></li>
-        </ul>
-        <p class="heads"><b>Keep it light.</b> Everyone has just flown overnight across eight time zones. It gets dark before 4pm.</p>
-      </div>
-    </article>
+      <article class="day" data-date="2026-12-21">
+        <div class="date"><span class="dow">Mon</span><span class="num">21</span><span class="mon">Dec</span></div>
+        <div class="day-body">
+          <div class="day-title"><h4>Classic central London</h4></div>
+          <ul class="plan">
+            <li><span class="slot">Morning</span><span class="txt">Jubilee line from Canning Town straight to Westminster, about 20 minutes. Big Ben and Westminster Abbey, then walk through St James's Park to Buckingham Palace.</span></li>
+            <li><span class="slot">Lunch</span><span class="txt">Covent Garden, with its Christmas tree and market halls.</span></li>
+            <li><span class="slot">Afternoon</span><span class="txt">The British Museum or the National Gallery. Both are free and warm.</span></li>
+            <li><span class="slot">Evening</span><span class="txt">Christmas lights on Regent Street and Oxford Street, or Winter Wonderland in Hyde Park (open until 10pm, entry tickets booked online).</span></li>
+          </ul>
+        </div>
+      </article>
 
-    <article class="day">
-      <div class="date"><span class="dow">Mon</span><span class="num">21</span><span class="mon">Dec</span></div>
-      <div class="day-body">
-        <div class="day-title"><h3>Classic central London</h3></div>
-        <ul class="plan">
-          <li><span class="slot">Morning</span><span class="txt">Jubilee line from Canning Town straight to Westminster, about 20 minutes. Big Ben and Westminster Abbey, then walk through St James's Park to Buckingham Palace.</span></li>
-          <li><span class="slot">Lunch</span><span class="txt">Covent Garden, with its Christmas tree and market halls.</span></li>
-          <li><span class="slot">Afternoon</span><span class="txt">The British Museum or the National Gallery. Both are free and warm.</span></li>
-          <li><span class="slot">Evening</span><span class="txt">Christmas lights on Regent Street and Oxford Street, or Winter Wonderland in Hyde Park (open until 10pm, entry tickets booked online).</span></li>
-        </ul>
-      </div>
-    </article>
-
-    <article class="day">
-      <div class="date"><span class="dow">Tue</span><span class="num">22</span><span class="mon">Dec</span></div>
-      <div class="day-body">
-        <div class="day-title"><h3>Fly to Barcelona</h3><span class="pill warn">Flight to book</span></div>
-        <ul class="plan">
-          <li><span class="slot">Morning</span><span class="txt">Check out. London City Airport is three DLR stops from Canning Town, so a British Airways flight from there is the easy option if one runs that day. Otherwise go from Heathrow or Gatwick.</span></li>
-          <li><span class="slot">Flight</span><span class="txt">About 2h 10m. Barcelona is one hour ahead of London.</span></li>
-          <li><span class="slot">Evening</span><span class="txt">Walk the Gothic Quarter. The Christmas market in front of the cathedral usually runs until 23 December.</span></li>
-        </ul>
-        <p class="heads"><b>Border:</b> this is the first entry to the Schengen area, so expect fingerprints and a photo at passport control.</p>
-      </div>
-    </article>
+      <article class="day travel" data-date="2026-12-22">
+        <div class="date"><span class="dow">Tue</span><span class="num">22</span><span class="mon">Dec</span></div>
+        <div class="day-body">
+          <div class="day-title"><svg aria-hidden="true"><use href="#plane"/></svg><h4>Fly to Barcelona</h4><span class="pill warn">Flight to book</span></div>
+          <ul class="plan">
+            <li><span class="slot">Morning</span><span class="txt">Check out. London City Airport is three DLR stops from Canning Town, so a British Airways flight from there is the easy option if one runs that day. Otherwise go from Heathrow or Gatwick.</span></li>
+            <li><span class="slot">Flight</span><span class="txt">About 2h 10m. Barcelona is one hour ahead of London.</span></li>
+            <li><span class="slot">Evening</span><span class="txt">Walk the Gothic Quarter to the Fira de Santa Llúcia, the Christmas market in front of the cathedral. Open until 9pm.</span></li>
+          </ul>
+          <p class="heads"><b>Border:</b> this is the first entry to the Schengen area, so expect fingerprints and a photo at passport control.</p>
+        </div>
+      </article>
+    </div>
   </div>
 
   <!-- Barcelona -->
-  <div class="leg" style="--c:var(--barcelona)">
-    <div class="leg-head">
-      <h3>Barcelona, over Christmas</h3>
-      <p class="stay"><b>Stay (to book):</b> four nights in Eixample, near Passeig de Gràcia. Christmas here means open streets and mild weather, while London shuts down completely on the 25th.</p>
+  <div class="leg" id="barcelona" data-city="barcelona" style="--c:var(--barcelona)">
+    <header class="chapter">
+      <div>
+        <p class="kicker">Stop 2 of 4 · Tue 22 to Sat 26 Dec · 4 nights</p>
+        <h3 class="ch-city">Barcelona, <em>Bon Nadal</em></h3>
+        <p class="ch-line">Christmas somewhere mild: Gaudí in the morning, the sea in the afternoon, and streets that stay open while London shuts for the day.</p>
+      </div>
+      <svg class="skyline" aria-hidden="true"><use href="#sky-barcelona"/></svg>
+      <dl class="facts">
+        <div><dt>Weather</dt><dd>8 to 15 °C, often sunny</dd></div>
+        <div><dt>Clock</dt><dd>7 hours behind KL</dd></div>
+        <div><dt>Dark by</dt><dd>5:30pm</dd></div>
+        <div><dt>Getting around</dt><dd>Metro and short taxi rides</dd></div>
+      </dl>
+    </header>
+    <div class="extras">
+      <div class="extra stay"><b>Stay · to book</b>Four nights in Eixample, near Passeig de Gràcia.</div>
+      <div class="extra"><b>Taste</b>Pa amb tomàquet, patatas bravas, churros with thick hot chocolate, and turrón at Christmas.</div>
+      <div class="extra"><b>Local tradition</b>Caga Tió, the smiling Christmas log that children tap with sticks until it gives up sweets. The market sells them in every size.</div>
+      <div class="extra"><b>If it rains</b>The Aquarium at Port Vell or the CosmoCaixa science museum. Check holiday hours.</div>
     </div>
+    <div class="days">
+      <article class="day" data-date="2026-12-23">
+        <div class="date"><span class="dow">Wed</span><span class="num">23</span><span class="mon">Dec</span></div>
+        <div class="day-body">
+          <div class="day-title"><h4>Gaudí day</h4></div>
+          <ul class="plan">
+            <li><span class="slot">Morning</span><span class="txt">Sagrada Família with timed tickets. Normal winter hours today, 9:00 to 18:00.</span></li>
+            <li><span class="slot">Lunch</span><span class="txt">Eixample.</span></li>
+            <li><span class="slot">Afternoon</span><span class="txt">Passeig de Gràcia for Casa Batlló and La Pedrera. Go inside one and admire the other from the street.</span></li>
+            <li><span class="slot">Evening</span><span class="txt">Tapas in El Born. Last day of the cathedral Christmas market if you missed it.</span></li>
+          </ul>
+        </div>
+      </article>
 
-    <article class="day">
-      <div class="date"><span class="dow">Wed</span><span class="num">23</span><span class="mon">Dec</span></div>
-      <div class="day-body">
-        <div class="day-title"><h3>Gaudí day</h3></div>
-        <ul class="plan">
-          <li><span class="slot">Morning</span><span class="txt">Sagrada Família with timed tickets. Normal winter hours today, 9:00 to 18:00.</span></li>
-          <li><span class="slot">Lunch</span><span class="txt">Eixample.</span></li>
-          <li><span class="slot">Afternoon</span><span class="txt">Passeig de Gràcia for Casa Batlló and La Pedrera. Go inside one and admire the other from the street.</span></li>
-          <li><span class="slot">Evening</span><span class="txt">Tapas in El Born.</span></li>
-        </ul>
-      </div>
-    </article>
+      <article class="day" data-date="2026-12-24">
+        <div class="date"><span class="dow">Thu</span><span class="num">24</span><span class="mon">Dec</span></div>
+        <div class="day-body">
+          <div class="day-title"><h4>Park Güell and the old town</h4><span class="pill info">Christmas Eve</span></div>
+          <ul class="plan">
+            <li><span class="slot">Morning</span><span class="txt">Park Güell with timed tickets, then coffee in Gràcia.</span></li>
+            <li><span class="slot">Afternoon</span><span class="txt">La Boqueria market and the lanes around the cathedral.</span></li>
+            <li><span class="slot">Evening</span><span class="txt">Dinner at a table reserved in advance. Hotel restaurants are the safe choice tonight.</span></li>
+          </ul>
+          <p class="heads"><b>Early closing:</b> markets and shops shut in the afternoon, and many restaurants do not open for dinner.</p>
+        </div>
+      </article>
 
-    <article class="day">
-      <div class="date"><span class="dow">Thu</span><span class="num">24</span><span class="mon">Dec</span></div>
-      <div class="day-body">
-        <div class="day-title"><h3>Park Güell and the old town</h3><span class="pill info">Christmas Eve</span></div>
-        <ul class="plan">
-          <li><span class="slot">Morning</span><span class="txt">Park Güell with timed tickets, then coffee in Gràcia.</span></li>
-          <li><span class="slot">Afternoon</span><span class="txt">La Boqueria market and the lanes around the cathedral.</span></li>
-          <li><span class="slot">Evening</span><span class="txt">Dinner at a table reserved in advance. Hotel restaurants are the safe choice tonight.</span></li>
-        </ul>
-        <p class="heads"><b>Early closing:</b> markets and shops shut in the afternoon, and many restaurants do not open for dinner.</p>
-      </div>
-    </article>
+      <article class="day" data-date="2026-12-25">
+        <div class="date"><span class="dow">Fri</span><span class="num">25</span><span class="mon">Dec</span></div>
+        <div class="day-body">
+          <div class="day-title"><h4>Christmas Day by the sea</h4><span class="pill info">Public holiday</span></div>
+          <ul class="plan">
+            <li><span class="slot">Morning</span><span class="txt">Slow start, then a walk along the Barceloneta seafront.</span></li>
+            <li><span class="slot">Lunch</span><span class="txt">Christmas lunch at a restaurant booked ahead. The Catalan classic is escudella, a big soup with giant pasta shells.</span></li>
+            <li><span class="slot">Afternoon</span><span class="txt">Taxi up to the Montjuïc viewpoints for the city and harbour at sunset.</span></li>
+          </ul>
+          <p class="heads"><b>Closed today:</b> most shops and museums. Sagrada Família opens 9:00 to 14:00 only, on the 25th and the 26th.</p>
+        </div>
+      </article>
 
-    <article class="day">
-      <div class="date"><span class="dow">Fri</span><span class="num">25</span><span class="mon">Dec</span></div>
-      <div class="day-body">
-        <div class="day-title"><h3>Christmas Day by the sea</h3><span class="pill info">Public holiday</span></div>
-        <ul class="plan">
-          <li><span class="slot">Morning</span><span class="txt">Slow start, then a walk along the Barceloneta seafront.</span></li>
-          <li><span class="slot">Lunch</span><span class="txt">Christmas lunch at a restaurant booked ahead.</span></li>
-          <li><span class="slot">Afternoon</span><span class="txt">Taxi up to the Montjuïc viewpoints for the city and harbour at sunset.</span></li>
-        </ul>
-        <p class="heads"><b>Closed today:</b> most shops and museums. Sagrada Família opens 9:00 to 14:00 only, on the 25th and the 26th.</p>
-      </div>
-    </article>
-
-    <article class="day">
-      <div class="date"><span class="dow">Sat</span><span class="num">26</span><span class="mon">Dec</span></div>
-      <div class="day-body">
-        <div class="day-title"><h3>Fly to Lisbon</h3><span class="pill warn">Flight to book</span><span class="pill info">Holiday in Catalonia</span></div>
-        <ul class="plan">
-          <li><span class="slot">Morning</span><span class="txt">Shops are closed again for Sant Esteve. Pack and have a last coffee.</span></li>
-          <li><span class="slot">Flight</span><span class="txt">A midday direct flight, about 2 hours. Lisbon is one hour behind Barcelona. No passport control, as both are in Schengen.</span></li>
-          <li><span class="slot">Evening</span><span class="txt">Christmas lights at Praça do Comércio and dinner in Chiado.</span></li>
-        </ul>
-      </div>
-    </article>
+      <article class="day travel" data-date="2026-12-26">
+        <div class="date"><span class="dow">Sat</span><span class="num">26</span><span class="mon">Dec</span></div>
+        <div class="day-body">
+          <div class="day-title"><svg aria-hidden="true"><use href="#plane"/></svg><h4>Fly to Lisbon</h4><span class="pill warn">Flight to book</span><span class="pill info">Holiday in Catalonia</span></div>
+          <ul class="plan">
+            <li><span class="slot">Morning</span><span class="txt">Shops are closed again for Sant Esteve. Pack and have a last coffee.</span></li>
+            <li><span class="slot">Flight</span><span class="txt">A midday direct flight, about 2 hours. Lisbon is one hour behind Barcelona. No passport control, as both are in Schengen.</span></li>
+            <li><span class="slot">Evening</span><span class="txt">Christmas lights at Praça do Comércio and dinner in Chiado.</span></li>
+          </ul>
+        </div>
+      </article>
+    </div>
   </div>
 
   <!-- Lisbon -->
-  <div class="leg" style="--c:var(--lisbon)">
-    <div class="leg-head">
-      <h3>Lisbon, with a day in Sintra</h3>
-      <p class="stay"><b>Stay (to book):</b> four nights in Baixa or Chiado. These dates miss every Portuguese holiday closure: national monuments shut on 25 December and 1 January, and last year on the 24th and 31st too.</p>
+  <div class="leg" id="lisbon" data-city="lisbon" style="--c:var(--lisbon)">
+    <header class="chapter">
+      <div>
+        <p class="kicker">Stop 3 of 4 · Sat 26 to Wed 30 Dec · 4 nights</p>
+        <h3 class="ch-city">Lisbon, <em>devagar</em></h3>
+        <p class="ch-line">Slowly does it: tiled streets, viewpoints and warm custard tarts, plus a fairy-tale palace in the hills.</p>
+      </div>
+      <svg class="skyline" aria-hidden="true"><use href="#sky-lisbon"/></svg>
+      <dl class="facts">
+        <div><dt>Weather</dt><dd>9 to 15 °C, showers likely</dd></div>
+        <div><dt>Clock</dt><dd>8 hours behind KL</dd></div>
+        <div><dt>Dark by</dt><dd>5:30pm</dd></div>
+        <div><dt>Getting around</dt><dd>Cheap taxis for the hills</dd></div>
+      </dl>
+    </header>
+    <div class="extras">
+      <div class="extra stay"><b>Stay · to book</b>Four nights in Baixa or Chiado, the flat part of town.</div>
+      <div class="extra"><b>Taste</b>Pastéis de nata warm with cinnamon, bacalhau à Brás, seafood rice.</div>
+      <div class="extra"><b>Why these dates</b>They miss every holiday closure. National monuments shut on 25 December and 1 January, and last year on the 24th and 31st too.</div>
+      <div class="extra"><b>If it rains</b>The Oceanário, one of Europe's big aquariums, or the National Tile Museum (closed Mondays).</div>
     </div>
+    <div class="days">
+      <article class="day" data-date="2026-12-27">
+        <div class="date"><span class="dow">Sun</span><span class="num">27</span><span class="mon">Dec</span></div>
+        <div class="day-body">
+          <div class="day-title"><h4>Old Lisbon</h4></div>
+          <ul class="plan">
+            <li><span class="slot">Morning</span><span class="txt">Taxi up to Castelo de São Jorge, then walk down through Alfama to the Santa Luzia viewpoint.</span></li>
+            <li><span class="slot">Lunch</span><span class="txt">Alfama.</span></li>
+            <li><span class="slot">Afternoon</span><span class="txt">Tram 28 or a tuk-tuk back to Chiado. Pastéis de nata and the Santa Justa viewpoint.</span></li>
+          </ul>
+          <p class="heads"><b>Hills:</b> the old town is steep and cobbled. Wear shoes with grip and take taxis for the climbs.</p>
+        </div>
+      </article>
 
-    <article class="day">
-      <div class="date"><span class="dow">Sun</span><span class="num">27</span><span class="mon">Dec</span></div>
-      <div class="day-body">
-        <div class="day-title"><h3>Old Lisbon</h3></div>
-        <ul class="plan">
-          <li><span class="slot">Morning</span><span class="txt">Taxi up to Castelo de São Jorge, then walk down through Alfama to the Santa Luzia viewpoint.</span></li>
-          <li><span class="slot">Lunch</span><span class="txt">Alfama.</span></li>
-          <li><span class="slot">Afternoon</span><span class="txt">Tram 28 or a tuk-tuk back to Chiado. Pastéis de nata and the Santa Justa viewpoint.</span></li>
-        </ul>
-        <p class="heads"><b>Hills:</b> the old town is steep and cobbled. Taxis and ride-hailing are cheap, so use them for the climbs.</p>
-      </div>
-    </article>
+      <article class="day" data-date="2026-12-28">
+        <div class="date"><span class="dow">Mon</span><span class="num">28</span><span class="mon">Dec</span></div>
+        <div class="day-body">
+          <div class="day-title"><h4>Sintra day trip</h4></div>
+          <ul class="plan">
+            <li><span class="slot">Morning</span><span class="txt">Train from Rossio station, about 40 minutes. Pena Palace with timed tickets.</span></li>
+            <li><span class="slot">Lunch</span><span class="txt">Sintra old town. Try a travesseiro pastry.</span></li>
+            <li><span class="slot">Afternoon</span><span class="txt">Quinta da Regaleira gardens, then the train back before dark.</span></li>
+          </ul>
+          <p class="heads"><b>Why Monday:</b> Belém's monuments are closed on Mondays, so Sintra goes here. Bring a waterproof layer. Sintra is colder and wetter than Lisbon.</p>
+        </div>
+      </article>
 
-    <article class="day">
-      <div class="date"><span class="dow">Mon</span><span class="num">28</span><span class="mon">Dec</span></div>
-      <div class="day-body">
-        <div class="day-title"><h3>Sintra day trip</h3></div>
-        <ul class="plan">
-          <li><span class="slot">Morning</span><span class="txt">Train from Rossio station, about 40 minutes. Pena Palace with timed tickets.</span></li>
-          <li><span class="slot">Lunch</span><span class="txt">Sintra old town. Try a travesseiro pastry.</span></li>
-          <li><span class="slot">Afternoon</span><span class="txt">Quinta da Regaleira gardens, then the train back before dark.</span></li>
-        </ul>
-        <p class="heads"><b>Why Monday:</b> Belém's monuments are closed on Mondays, so Sintra goes here. Bring a waterproof layer. Sintra is colder and wetter than Lisbon.</p>
-      </div>
-    </article>
+      <article class="day" data-date="2026-12-29">
+        <div class="date"><span class="dow">Tue</span><span class="num">29</span><span class="mon">Dec</span></div>
+        <div class="day-body">
+          <div class="day-title"><h4>Belém</h4></div>
+          <ul class="plan">
+            <li><span class="slot">Morning</span><span class="txt">Jerónimos Monastery at opening time, before the queue builds. Custard tarts at Pastéis de Belém next door.</span></li>
+            <li><span class="slot">Afternoon</span><span class="txt">Belém Tower and the Monument to the Discoveries along the river.</span></li>
+            <li><span class="slot">Evening</span><span class="txt">Fado dinner in Alfama or Bairro Alto.</span></li>
+          </ul>
+          <p class="heads"><b>Belém Tower</b> reopened in May 2026 after a year of restoration and now caps visitors at about 900 a day. Book ahead.</p>
+        </div>
+      </article>
 
-    <article class="day">
-      <div class="date"><span class="dow">Tue</span><span class="num">29</span><span class="mon">Dec</span></div>
-      <div class="day-body">
-        <div class="day-title"><h3>Belém</h3></div>
-        <ul class="plan">
-          <li><span class="slot">Morning</span><span class="txt">Jerónimos Monastery at opening time, before the queue builds. Custard tarts at Pastéis de Belém next door.</span></li>
-          <li><span class="slot">Afternoon</span><span class="txt">Belém Tower and the Monument to the Discoveries along the river.</span></li>
-          <li><span class="slot">Evening</span><span class="txt">Fado dinner in Alfama or Bairro Alto.</span></li>
-        </ul>
-        <p class="heads"><b>Belém Tower</b> reopened in May 2026 after a year of restoration and now caps visitors at about 900 a day. Book ahead.</p>
-      </div>
-    </article>
-
-    <article class="day">
-      <div class="date"><span class="dow">Wed</span><span class="num">30</span><span class="mon">Dec</span></div>
-      <div class="day-body">
-        <div class="day-title"><h3>Fly back to London</h3><span class="pill warn">Flight to book</span></div>
-        <ul class="plan">
-          <li><span class="slot">Morning</span><span class="txt">Last walk and lunch at the Time Out Market.</span></li>
-          <li><span class="slot">Flight</span><span class="txt">An afternoon direct flight, about 2h 50m. Lisbon and London share a time zone. Passports are checked leaving Portugal and entering the UK.</span></li>
-          <li><span class="slot">Evening</span><span class="txt">Check in to the second London hotel. Quiet dinner nearby.</span></li>
-        </ul>
-      </div>
-    </article>
+      <article class="day travel" data-date="2026-12-30">
+        <div class="date"><span class="dow">Wed</span><span class="num">30</span><span class="mon">Dec</span></div>
+        <div class="day-body">
+          <div class="day-title"><svg aria-hidden="true"><use href="#plane"/></svg><h4>Fly back to London</h4><span class="pill warn">Flight to book</span></div>
+          <ul class="plan">
+            <li><span class="slot">Morning</span><span class="txt">Last walk and lunch at the Time Out Market.</span></li>
+            <li><span class="slot">Flight</span><span class="txt">An afternoon direct flight, about 2h 50m. Lisbon and London share a time zone. Passports are checked leaving Portugal and entering the UK.</span></li>
+            <li><span class="slot">Evening</span><span class="txt">Check in to the second London hotel. Quiet dinner nearby.</span></li>
+          </ul>
+        </div>
+      </article>
+    </div>
   </div>
 
   <!-- London 2 -->
-  <div class="leg" style="--c:var(--london)">
-    <div class="leg-head">
-      <h3>London, for New Year</h3>
-      <p class="stay"><b>Stay (to book):</b> three nights, central. South Bank, Covent Garden or Westminster puts the fireworks within walking distance.</p>
+  <div class="leg" id="new-year" data-city="london" style="--c:var(--london)">
+    <header class="chapter">
+      <div>
+        <p class="kicker">Stop 4 of 4 · Wed 30 Dec to Sat 2 Jan · 3 nights</p>
+        <h3 class="ch-city">London, <em>at midnight</em></h3>
+        <p class="ch-line">Back for the countdown: fireworks over the Thames, then a slow New Year's Day.</p>
+      </div>
+      <svg class="skyline" aria-hidden="true"><use href="#sky-london"/><use href="#sky-fireworks"/></svg>
+      <dl class="facts">
+        <div><dt>Weather</dt><dd>3 to 8 °C, colder at night</dd></div>
+        <div><dt>Midnight</dt><dd id="nye-count">Thu 31 Dec</dd></div>
+        <div><dt>Viewing areas</dt><dd>Open 8pm, last entry 10:30pm</dd></div>
+        <div><dt>Getting home</dt><dd>Tube runs through the night</dd></div>
+      </dl>
+    </header>
+    <div class="extras">
+      <div class="extra stay"><b>Stay · to book</b>Three nights, central. South Bank, Covent Garden or Westminster puts the fireworks within walking distance.</div>
+      <div class="extra"><b>Taste</b>A proper roast dinner, afternoon tea, and grazing through Borough Market.</div>
+      <div class="extra"><b>No fireworks tickets?</b>You will not get near the river. Book a late restaurant table or a Thames dinner cruise, or watch the BBC broadcast together.</div>
     </div>
+    <div class="days">
+      <article class="day" data-date="2026-12-31">
+        <div class="date"><span class="dow">Thu</span><span class="num">31</span><span class="mon">Dec</span></div>
+        <div class="day-body">
+          <div class="day-title"><h4>New Year's Eve</h4><span class="pill warn">Tickets needed</span></div>
+          <ul class="plan">
+            <li><span class="slot">Morning</span><span class="txt">Tower Bridge and Borough Market.</span></li>
+            <li><span class="slot">Afternoon</span><span class="txt">Rest at the hotel and eat properly. The night is long, cold and spent standing outdoors.</span></li>
+            <li><span class="slot">20:00</span><span class="txt">Viewing areas open. Entry closes at 22:30 and there is no re-entry.</span></li>
+            <li><span class="slot">00:00</span><span class="txt">Fireworks at the London Eye. The event ends at about 00:30.</span></li>
+          </ul>
+          <p class="heads"><b>Wear everything.</b> Thermals, hat, gloves and a flask of something hot. It is four hours of standing by a river in winter.</p>
+        </div>
+      </article>
 
-    <article class="day">
-      <div class="date"><span class="dow">Thu</span><span class="num">31</span><span class="mon">Dec</span></div>
-      <div class="day-body">
-        <div class="day-title"><h3>New Year's Eve</h3><span class="pill warn">Tickets needed</span></div>
-        <ul class="plan">
-          <li><span class="slot">Morning</span><span class="txt">Tower Bridge and Borough Market.</span></li>
-          <li><span class="slot">Afternoon</span><span class="txt">Rest at the hotel and eat properly. The night is long, cold and spent standing outdoors.</span></li>
-          <li><span class="slot">20:00</span><span class="txt">Viewing areas open. Entry closes at 22:30 and there is no re-entry.</span></li>
-          <li><span class="slot">00:00</span><span class="txt">Fireworks at the London Eye. The event ends at about 00:30. Most Tube and rail services run through the night.</span></li>
-        </ul>
-        <p class="heads"><b>No tickets?</b> You will not get near the river. Book a restaurant with a late table or a Thames dinner cruise, or watch the BBC broadcast together.</p>
-      </div>
-    </article>
+      <article class="day" data-date="2027-01-01">
+        <div class="date"><span class="dow">Fri</span><span class="num">1</span><span class="mon">Jan</span></div>
+        <div class="day-body">
+          <div class="day-title"><h4>New Year's Day</h4><span class="pill info">Bank holiday</span></div>
+          <ul class="plan">
+            <li><span class="slot">Morning</span><span class="txt">Sleep in.</span></li>
+            <li><span class="slot">13:00</span><span class="txt">London's New Year's Day Parade, announced for 1pm from Piccadilly to Parliament Square. Marching bands and dancers, free to watch from the pavement.</span></li>
+            <li><span class="slot">Afternoon</span><span class="txt">Winter Wonderland in Hyde Park (open from 11am, running until 3 January) or a booked afternoon tea.</span></li>
+            <li><span class="slot">Evening</span><span class="txt">Farewell dinner, then pack.</span></li>
+          </ul>
+          <p class="heads"><b>Closed today:</b> the National Gallery, and many shops keep short hours. <b>Packing:</b> 30 kg each on the way home, down from 40 kg.</p>
+        </div>
+      </article>
 
-    <article class="day">
-      <div class="date"><span class="dow">Fri</span><span class="num">1</span><span class="mon">Jan</span></div>
-      <div class="day-body">
-        <div class="day-title"><h3>New Year's Day</h3><span class="pill info">Bank holiday</span></div>
-        <ul class="plan">
-          <li><span class="slot">Morning</span><span class="txt">Sleep in.</span></li>
-          <li><span class="slot">Midday</span><span class="txt">London's New Year's Day Parade through the West End. Check the 2027 route and start time nearer the day.</span></li>
-          <li><span class="slot">Afternoon</span><span class="txt">Winter Wonderland in Hyde Park (open from 11am, running until 3 January) or a booked afternoon tea.</span></li>
-          <li><span class="slot">Evening</span><span class="txt">Farewell dinner, then pack.</span></li>
-        </ul>
-        <p class="heads"><b>Closed today:</b> the National Gallery, and many shops keep short hours. <b>Packing:</b> 30 kg each on the way home, down from 40 kg.</p>
-      </div>
-    </article>
-
-    <article class="day">
-      <div class="date"><span class="dow">Sat</span><span class="num">2</span><span class="mon">Jan</span></div>
-      <div class="day-body">
-        <div class="day-title"><h3>Fly home</h3></div>
-        <ul class="plan">
-          <li><span class="slot">10:45</span><span class="txt">Leave central London for Heathrow on the Elizabeth or Piccadilly line, or by pre-booked car.</span></li>
-          <li><span class="slot">11:55</span><span class="txt">At Terminal 4, three hours before departure.</span></li>
-          <li><span class="slot">14:55</span><span class="txt">QR8 to Doha.</span></li>
-        </ul>
-      </div>
-    </article>
+      <article class="day travel" data-date="2027-01-02">
+        <div class="date"><span class="dow">Sat</span><span class="num">2</span><span class="mon">Jan</span></div>
+        <div class="day-body">
+          <div class="day-title"><svg aria-hidden="true"><use href="#plane"/></svg><h4>Fly home</h4></div>
+          <ul class="plan">
+            <li><span class="slot">10:45</span><span class="txt">Leave central London for Heathrow on the Elizabeth or Piccadilly line, or by pre-booked car.</span></li>
+            <li><span class="slot">11:55</span><span class="txt">At Terminal 4, three hours before departure.</span></li>
+            <li><span class="slot">14:55</span><span class="txt">QR8 to Doha.</span></li>
+          </ul>
+        </div>
+      </article>
+    </div>
   </div>
 
-  <div class="leg" style="--c:var(--flight)">
-    <article class="day">
-      <div class="date"><span class="dow">Sun</span><span class="num">3</span><span class="mon">Jan</span></div>
-      <div class="day-body">
-        <div class="day-title"><h3>Home</h3></div>
-        <ul class="plan">
-          <li><span class="slot">00:40</span><span class="txt">Arrive Doha. 1h 40m to connect.</span></li>
-          <li><span class="slot">02:20</span><span class="txt">QR852 to Kuala Lumpur.</span></li>
-          <li><span class="slot">14:40</span><span class="txt">Land at KLIA Terminal 1.</span></li>
-        </ul>
-      </div>
-    </article>
+  <!-- Home -->
+  <div class="leg" data-city="travel" style="--c:var(--flight)">
+    <div class="days">
+      <article class="day travel" data-date="2027-01-03">
+        <div class="date"><span class="dow">Sun</span><span class="num">3</span><span class="mon">Jan</span></div>
+        <div class="day-body">
+          <div class="day-title"><svg aria-hidden="true"><use href="#plane"/></svg><h4>Home</h4></div>
+          <ul class="plan">
+            <li><span class="slot">00:40</span><span class="txt">Arrive Doha. 1h 40m to connect.</span></li>
+            <li><span class="slot">02:20</span><span class="txt">QR852 to Kuala Lumpur.</span></li>
+            <li><span class="slot">14:40</span><span class="txt">Land at KLIA Terminal 1.</span></li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </div>
+
   </div>
 </section>
 
 <!-- BEFORE YOU FLY -->
 <section id="before-you-fly">
   <div class="sec-head">
-    <h2>Before you fly</h2>
+    <div>
+      <h2>Before you fly</h2>
+      <p class="muted small">What time it is for everyone right now, then the paperwork and the packing.</p>
+    </div>
+  </div>
+
+  <div class="clocks" id="clocks">
+    <div class="clock"><span class="where">Kuala Lumpur</span><span class="t" data-tz="Asia/Kuala_Lumpur">--:--</span><span class="d" data-tzd="Asia/Kuala_Lumpur">Home</span></div>
+    <div class="clock"><span class="where">London</span><span class="t" data-tz="Europe/London">--:--</span><span class="d" data-tzd="Europe/London">8 hours behind KL</span></div>
+    <div class="clock"><span class="where">Barcelona</span><span class="t" data-tz="Europe/Madrid">--:--</span><span class="d" data-tzd="Europe/Madrid">7 hours behind KL</span></div>
+    <div class="clock"><span class="where">Lisbon</span><span class="t" data-tz="Europe/Lisbon">--:--</span><span class="d" data-tzd="Europe/Lisbon">8 hours behind KL</span></div>
   </div>
 
   <div class="notes">
@@ -689,9 +980,9 @@ footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:2px}
       <p>Leave the big suitcases in London on 22 December and take cabin-size bags to Spain and Portugal.</p>
     </div>
     <div class="note-card">
-      <h3>Clocks</h3>
-      <p>London and Lisbon are 8 hours behind Kuala Lumpur. Barcelona is 7 hours behind.</p>
+      <h3>Passports and money</h3>
       <p>Carry passports on every flight. London to Barcelona and Lisbon to London both cross a border.</p>
+      <p>Pounds in London, euros in Barcelona and Lisbon. Cards work almost everywhere; keep a few coins for market stalls.</p>
     </div>
   </div>
 
@@ -702,49 +993,205 @@ footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:2px}
         <thead><tr><th>City</th><th>Typical late December</th><th>Wear</th></tr></thead>
         <tbody>
           <tr><td>London</td><td class="mono">3 to 8 °C</td><td>Warm coat, hat, gloves. Thermals for New Year's Eve.</td></tr>
-          <tr><td>Barcelona</td><td class="mono">8 to 15 °C</td><td>Light jacket and a jumper. Often sunny.</td></tr>
-          <tr><td>Lisbon</td><td class="mono">9 to 15 °C</td><td>Jacket and a waterproof. Showers are common.</td></tr>
+          <tr><td>Barcelona</td><td class="mono">8 to 15 °C</td><td>Light jacket and a jumper. Sunglasses.</td></tr>
+          <tr><td>Lisbon</td><td class="mono">9 to 15 °C</td><td>Jacket, a waterproof, and shoes with grip for the cobbles.</td></tr>
         </tbody>
       </table>
     </div>
   </div>
 </section>
 
+</main>
+
 <footer>
-  <p>Opening times, ticket dates and entry rules were checked on 15 November 2026 and can change. Confirm each one when booking.</p>
+  <p>Opening times, ticket dates and entry rules were checked on 15 and 16 November 2026 and can change. Confirm each one when booking.</p>
   <ul>
     <li><a href="https://www.london.gov.uk/NYE">Mayor of London: New Year's Eve 2026 tickets and viewing areas</a></li>
-    <li><a href="https://sagradafamilia.org/en/schedules-how-to-get">Sagrada Família: opening hours</a></li>
+    <li><a href="https://www.visitlondon.com/things-to-do/event/42844535-new-year-s-day-in-london">Visit London: New Year's Day and the parade</a></li>
     <li><a href="https://hydeparkwinterwonderland.com/tickets-guide/">Hyde Park Winter Wonderland: dates and tickets</a></li>
+    <li><a href="https://sagradafamilia.org/en/schedules-how-to-get">Sagrada Família: opening hours</a></li>
+    <li><a href="https://agenda500.barcelona.cat/en/detall/santa-llucia-fair_1346175546.html">Barcelona city agenda: Fira de Santa Llúcia</a></li>
     <li><a href="https://www.theportugalnews.com/news/2025-12-23/museums-and-public-monuments-closed-for-holidays/935488">The Portugal News: holiday closures of national monuments</a></li>
     <li><a href="https://www.timeout.pt/lisboa/pt/noticias/torre-de-belem-reabre-a-26-de-maio-e-com-novo-modelo-para-as-visitas-052026">Time Out Lisboa: Belém Tower reopening</a></li>
     <li><a href="https://www.gov.uk/guidance/apply-for-an-electronic-travel-authorisation-eta">GOV.UK: apply for a UK ETA</a></li>
   </ul>
 </footer>
 
-</div>
-
 <script>
 (function(){
+  function $(id){ return document.getElementById(id); }
+  function all(sel, root){ return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
+
+  /* ---- Checklist ---- */
   var KEY = 'family-winter-trip-2026-checklist';
-  var boxes = Array.prototype.slice.call(document.querySelectorAll('.todo input[type="checkbox"]'));
-  var out = document.getElementById('progress');
+  var boxes = all('.todo input[type="checkbox"]');
   var saved = {};
   try { saved = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { saved = {}; }
-
-  function update(){
+  var C = 2 * Math.PI * 26;
+  function progress(){
     var done = boxes.filter(function(b){ return b.checked; }).length;
-    out.textContent = done + ' of ' + boxes.length + ' done';
+    $('ring-prog').setAttribute('stroke-dasharray', C.toFixed(1));
+    $('ring-prog').setAttribute('stroke-dashoffset', (C * (1 - done / boxes.length)).toFixed(1));
+    $('ring-text').textContent = done + '/' + boxes.length;
+    $('ring-label').textContent = done === boxes.length ? 'Everything is booked' : done + ' of ' + boxes.length + ' done';
   }
   boxes.forEach(function(b){
     if (Object.prototype.hasOwnProperty.call(saved, b.id)) { b.checked = !!saved[b.id]; }
     b.addEventListener('change', function(){
       saved[b.id] = b.checked;
       try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {}
-      update();
+      progress();
     });
   });
-  update();
+  progress();
+
+  /* ---- Clocks and countdowns ---- */
+  var DEPART = Date.UTC(2026, 11, 19, 13, 15);   // 21:15 in Kuala Lumpur
+  var HOME   = Date.UTC(2027, 0, 3, 6, 40);      // 14:40 in Kuala Lumpur
+  var SALE   = Date.UTC(2026, 10, 20, 12, 0);    // 12 noon in London
+  var NYE    = Date.UTC(2027, 0, 1, 0, 0);       // midnight in London
+  var DAY0   = Date.UTC(2026, 11, 19);
+
+  function parts(ms){
+    var m = Math.max(0, Math.floor(ms / 60000));
+    return { d: Math.floor(m / 1440), h: Math.floor((m % 1440) / 60), m: m % 60 };
+  }
+  function span(ms){
+    var p = parts(ms);
+    if (p.d > 0) { return p.d + (p.d === 1 ? ' day ' : ' days ') + p.h + ' h'; }
+    if (p.h > 0) { return p.h + ' h ' + p.m + ' min'; }
+    return p.m + ' min';
+  }
+  function londonDate(now){
+    try {
+      return new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/London', year: 'numeric', month: '2-digit', day: '2-digit' }).format(now);
+    } catch (e) { return new Date(now).toISOString().slice(0, 10); }
+  }
+  function clocks(now){
+    all('[data-tz]').forEach(function(el){
+      try {
+        el.textContent = new Intl.DateTimeFormat('en-GB', { timeZone: el.getAttribute('data-tz'), hour: '2-digit', minute: '2-digit', hour12: false }).format(now);
+      } catch (e) {}
+    });
+    all('[data-tzd]').forEach(function(el){
+      try {
+        var day = new Intl.DateTimeFormat('en-GB', { timeZone: el.getAttribute('data-tzd'), weekday: 'long' }).format(now);
+        if (!el.getAttribute('data-base')) { el.setAttribute('data-base', el.textContent); }
+        el.textContent = day + ' · ' + el.getAttribute('data-base');
+      } catch (e) {}
+    });
+  }
+  function today(now){
+    var iso = londonDate(now);
+    all('.day.is-today').forEach(function(d){
+      d.classList.remove('is-today'); d.removeAttribute('id');
+      var p = d.querySelector('.pill.today'); if (p) { p.remove(); }
+    });
+    var card = document.querySelector('.day[data-date="' + iso + '"]');
+    if (!card) { return null; }
+    card.classList.add('is-today'); card.id = 'today';
+    var pill = document.createElement('span'); pill.className = 'pill today'; pill.textContent = 'Today';
+    card.querySelector('.day-title').appendChild(pill);
+    return card;
+  }
+  function tick(){
+    var now = Date.now();
+    var card = today(now);
+    if (now < DEPART) {
+      var p = parts(DEPART - now);
+      $('cd-d').textContent = p.d; $('cd-h').textContent = p.h; $('cd-m').textContent = p.m;
+    } else if (now < HOME) {
+      var iso = londonDate(now).split('-');
+      var n = Math.round((Date.UTC(+iso[0], +iso[1] - 1, +iso[2]) - DAY0) / 864e5) + 1;
+      $('cd-units').hidden = true; $('cd-big').hidden = false;
+      $('cd-big').textContent = 'Day ' + Math.min(16, Math.max(1, n)) + ' of 16';
+      $('cd-label').innerHTML = card ? 'Today: ' + card.querySelector('h4').textContent + '. <a href="#today">Jump to today</a>' : 'The trip is under way.';
+    } else {
+      $('cd-units').hidden = true; $('cd-big').hidden = false;
+      $('cd-big').textContent = 'Home again';
+      $('cd-label').textContent = 'Sixteen days, three cities, one very good Christmas.';
+    }
+    $('sale-count').textContent = now < SALE ? 'On sale in ' + span(SALE - now) : (now < NYE ? 'On sale now' : 'Sale closed');
+    $('nye-count').textContent = now < NYE ? 'In ' + span(NYE - now) : 'Happy New Year';
+    clocks(now);
+  }
+  tick();
+  setInterval(tick, 30000);
+
+  /* ---- Stop filter ---- */
+  var legs = all('.leg');
+  var filterButtons = all('.filters button');
+  function setFilter(which){
+    filterButtons.forEach(function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-filter') === which ? 'true' : 'false'); });
+    legs.forEach(function(l){ l.hidden = which !== 'all' && l.getAttribute('data-city') !== which; });
+  }
+  filterButtons.forEach(function(b){
+    b.addEventListener('click', function(){ setFilter(b.getAttribute('data-filter')); });
+  });
+
+  /* ---- Nav ---- */
+  var links = all('.nav a');
+  links.forEach(function(a){ a.addEventListener('click', function(){ setFilter('all'); }); });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) { return; }
+        links.forEach(function(a){
+          var on = a.getAttribute('href') === '#' + en.target.id;
+          a.setAttribute('aria-current', on ? 'true' : 'false');
+          if (on) { a.parentNode.scrollLeft = Math.max(0, a.offsetLeft - 24); }
+        });
+      });
+    }, { rootMargin: '-35% 0px -60% 0px' });
+    links.forEach(function(a){
+      var t = document.querySelector(a.getAttribute('href'));
+      if (t) { io.observe(t); }
+    });
+  }
+
+  /* ---- Snow ---- */
+  var cv = $('snow'), hero = cv.parentNode, ctx = cv.getContext && cv.getContext('2d');
+  if (ctx) {
+    var W = 0, H = 0, flakes = [], raf = 0;
+    var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function size(){
+      var r = hero.getBoundingClientRect(), dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = r.width; H = r.height;
+      cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var n = Math.round(Math.min(120, (W * H) / 8000));
+      flakes = [];
+      for (var i = 0; i < n; i++) {
+        flakes.push({ x: Math.random() * W, y: Math.random() * H, r: 0.6 + Math.random() * 1.7, v: 0.15 + Math.random() * 0.45, d: Math.random() * 6.28, a: 0.2 + Math.random() * 0.55 });
+      }
+    }
+    function draw(){
+      ctx.clearRect(0, 0, W, H);
+      ctx.fillStyle = '#ffffff';
+      for (var i = 0; i < flakes.length; i++) {
+        var f = flakes[i];
+        ctx.globalAlpha = f.a;
+        ctx.beginPath(); ctx.arc(f.x, f.y, f.r, 0, 6.283); ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+    }
+    function step(){
+      for (var i = 0; i < flakes.length; i++) {
+        var f = flakes[i];
+        f.y += f.v; f.d += 0.01; f.x += Math.sin(f.d) * 0.25;
+        if (f.y > H + 4) { f.y = -4; f.x = Math.random() * W; }
+      }
+      draw();
+      raf = document.hidden ? 0 : requestAnimationFrame(step);
+    }
+    size(); draw();
+    if (!still) {
+      raf = requestAnimationFrame(step);
+      document.addEventListener('visibilitychange', function(){ if (!document.hidden && !raf) { raf = requestAnimationFrame(step); } });
+    }
+    var rt = 0;
+    window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(function(){ size(); draw(); }, 150); });
+  }
 })();
 </script>
 </body>

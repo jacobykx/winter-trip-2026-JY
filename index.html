@@ -337,10 +337,74 @@ table.wx td.mono{white-space:nowrap}
 footer{max-width:1040px;margin:0 auto;padding:22px 20px 48px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:8px;font-size:.85rem;color:var(--muted)}
 footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:2px}
 
+/* ---------- Costs ---------- */
+.cost-top{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px}
+.cstat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 18px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.cstat .lbl{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.cstat .big{font-family:var(--display);font-size:clamp(1.7rem,4vw,2.3rem);font-weight:600;font-variant-numeric:tabular-nums;line-height:1.1;overflow-wrap:anywhere}
+.cstat .sub{font-size:.875rem;color:var(--muted)}
+.cstat.total{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.cstat.total .lbl,.cstat.total .sub{color:color-mix(in srgb,var(--paper) 72%,transparent)}
+.cstat .people{display:inline-flex;align-items:center;gap:6px}
+.cost-input{font:inherit;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:6px 9px;min-width:0}
+.cost-input.num{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right}
+.cstat .people .cost-input{width:3.4em;padding:3px 6px}
+.cost-mix{display:flex;flex-direction:column;gap:10px}
+.cost-bar{display:flex;gap:2px;height:12px;border-radius:999px;overflow:hidden;background:var(--line)}
+.cost-bar span{display:block;height:100%;min-width:3px;transition:flex-grow .25s}
+.cost-legend{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 20px;font-size:.875rem}
+.cost-legend li{display:flex;align-items:center;gap:6px}
+.cost-legend i{width:10px;height:10px;border-radius:3px;flex:none}
+#costs{--c-food:#6d4bc4}
+:root[data-theme="dark"] #costs{--c-food:#b39cf0}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) #costs{--c-food:#b39cf0}}
+.cost-legend b{font-family:var(--mono);font-weight:500}
+.cost-list{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.cost-head,.cost-row{display:grid;grid-template-columns:24px minmax(0,1fr) 128px 196px 92px 34px;gap:10px;align-items:center;padding:8px 14px}
+.cost-head{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding-top:12px;padding-bottom:10px}
+.cost-head .r{text-align:right}
+.cost-row{border-top:1px solid var(--line)}
+.cost-row input[type="checkbox"]{width:19px;height:19px;margin:0;accent-color:var(--ok)}
+.cost-row .item{width:100%;font-weight:600;background:transparent;border-color:transparent}
+.cost-row .item:hover{border-color:var(--line)}
+.cost-row .item:focus{background:var(--paper);border-color:var(--line)}
+.cost-row.paid .item{color:var(--muted)}
+.cost-row select.cost-input{width:100%;padding-right:4px}
+.cost-amt{display:flex;min-width:0}
+.cost-amt select.cost-input{width:auto;flex:none;border-radius:8px 0 0 8px;border-right:0;padding-right:2px}
+.cost-amt .cost-input.num{flex:1;width:100%;border-radius:0 8px 8px 0}
+.cost-conv{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:.9rem;color:var(--muted);text-align:right;white-space:nowrap}
+.cost-del{width:32px;height:32px;display:grid;place-items:center;border:0;border-radius:8px;background:transparent;color:var(--muted);font-size:1.25rem;line-height:1;cursor:pointer}
+.cost-del:hover{background:var(--paper);color:var(--london)}
+.cost-foot{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between;padding:12px 14px;border-top:1px solid var(--line)}
+.cost-empty{padding:18px 14px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+.cost-btns{display:flex;flex-wrap:wrap;gap:8px}
+.btn{font:inherit;font-size:.875rem;font-weight:600;color:var(--ink);cursor:pointer;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:7px 14px}
+.btn:hover{border-color:var(--ink)}
+.btn.primary{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.btn.quiet{color:var(--muted)}
+.cost-rates{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:.875rem;color:var(--muted)}
+.cost-rates label{display:inline-flex;align-items:center;gap:6px}
+.cost-rates .cost-input{width:5.2em;padding:4px 7px}
+.cost-status{font-size:.85rem;color:var(--ok);min-height:1.2em}
+@media (max-width:760px){
+  .cost-head{display:none}
+  .cost-row{grid-template-columns:24px minmax(0,1fr) minmax(0,1.25fr) 34px;grid-template-areas:"paid item item del" ". cat amt amt" ". conv conv conv";row-gap:6px;padding:12px 14px}
+  .cost-row > :nth-child(1){grid-area:paid}
+  .cost-row > :nth-child(2){grid-area:item}
+  .cost-row > :nth-child(3){grid-area:cat}
+  .cost-row > :nth-child(4){grid-area:amt}
+  .cost-row > :nth-child(5){grid-area:conv}
+  .cost-row > :nth-child(6){grid-area:del}
+  .cost-row .item{padding-left:0}
+  .cost-conv.empty{display:none}
+}
+
 @media print{
   .nav,.filters,#snow{display:none}
   .hero{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .day,.pass,.group,.moment{break-inside:avoid}
+  .day,.pass,.group,.moment,.cost-list{break-inside:avoid}
+  .cost-foot,.cost-del,.cost-rates .cost-status{display:none}
 }
 </style>
 </head>
@@ -452,6 +516,7 @@ footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:2px}
 <nav class="nav" aria-label="Sections">
   <div class="nav-inner">
     <a href="#to-book">To book</a>
+    <a href="#costs">Costs</a>
     <a href="#flights">Flights</a>
     <a href="#london">London</a>
     <a href="#barcelona">Barcelona</a>
@@ -599,6 +664,62 @@ footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:2px}
 </section>
 
 <!-- FLIGHTS -->
+<section id="costs">
+  <div class="sec-head">
+    <div>
+      <h2>Costs</h2>
+      <p class="muted small">Add each cost in pounds, euros or ringgit and the totals update as you type. Costs are saved in this browser only, so use Copy summary to share them with the family.</p>
+    </div>
+  </div>
+
+  <div class="cost-top">
+    <div class="cstat total">
+      <span class="lbl">Trip total</span>
+      <span class="big" id="cost-total">£0</span>
+      <span class="sub" id="cost-total-alt">RM 0 · €0</span>
+    </div>
+    <div class="cstat">
+      <span class="lbl">Per person</span>
+      <span class="big" id="cost-pp">£0</span>
+      <span class="sub people"><span>Split between</span><input class="cost-input num" id="cost-people" type="number" min="1" max="20" step="1" value="4" aria-label="Number of people sharing the cost"><span>people</span></span>
+    </div>
+    <div class="cstat">
+      <span class="lbl">Paid so far</span>
+      <span class="big" id="cost-paid">£0</span>
+      <span class="sub" id="cost-left">£0 still to pay</span>
+    </div>
+  </div>
+
+  <div class="cost-mix" id="cost-mix" hidden>
+    <div class="cost-bar" id="cost-bar" role="img" aria-label="Share of the total by category"></div>
+    <ul class="cost-legend" id="cost-legend"></ul>
+  </div>
+
+  <div class="cost-list">
+    <div class="cost-head" aria-hidden="true">
+      <span title="Paid">Paid</span><span>Item</span><span>Category</span><span class="r">Amount</span><span class="r">In £</span><span></span>
+    </div>
+    <div id="cost-rows"></div>
+    <p class="cost-empty" id="cost-empty" hidden>No costs yet. Add the first one below.</p>
+    <div class="cost-foot">
+      <button type="button" class="btn primary" id="cost-add">+ Add a cost</button>
+      <div class="cost-btns">
+        <button type="button" class="btn" id="cost-copy">Copy summary</button>
+        <button type="button" class="btn" id="cost-csv">Download CSV</button>
+        <button type="button" class="btn quiet" id="cost-reset">Start over</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="cost-rates">
+    <span>Exchange rates used for the totals:</span>
+    <label>£1 = €<input class="cost-input num" id="rate-eur" type="text" inputmode="decimal" aria-label="Euros per pound"></label>
+    <label>£1 = RM<input class="cost-input num" id="rate-myr" type="text" inputmode="decimal" aria-label="Ringgit per pound"></label>
+    <span>Rough rates from November 2026. Change them to the rate you actually paid.</span>
+    <span class="cost-status" id="cost-status" role="status" aria-live="polite"></span>
+  </div>
+</section>
+
 <section id="flights">
   <div class="sec-head">
     <div>
@@ -1475,6 +1596,234 @@ var GEO={"land":{"type":"MultiPolygon","coordinates":[[[[178.1,-17.5],[178.4,-17
     window.addEventListener('resize', function(){ clearTimeout(gt); gt = setTimeout(resize, 120); });
     if (document.fonts && document.fonts.ready) { document.fonts.ready.then(redraw); }
   })();
+})();
+</script>
+<script>
+/* ---- Costs: rows, totals, per-person split, category mix. Saved in this browser only. ---- */
+(function(){
+  function $(id){ return document.getElementById(id); }
+  var KEY = 'family-winter-trip-2026-costs';
+  var CATS = [
+    { id:'flights',   name:'Flights',   color:'var(--flight)' },
+    { id:'hotels',    name:'Hotels',    color:'var(--lisbon)' },
+    { id:'transport', name:'Transport', color:'var(--ok)' },
+    { id:'tickets',   name:'Tickets',   color:'var(--barcelona)' },
+    { id:'food',      name:'Food',      color:'var(--c-food)' },
+    { id:'shopping',  name:'Shopping',  color:'var(--london)' },
+    { id:'other',     name:'Other',     color:'var(--muted)' }
+  ];
+  var CUR = { GBP:'£', EUR:'€', MYR:'RM ' };
+  function defaults(){
+    return {
+      people: 4,
+      rates: { EUR: 1.19, MYR: 5.45 },
+      rows: [
+        ['Qatar Airways, Kuala Lumpur to London and back', 'flights', 'MYR', true],
+        ['London hotel, 20 to 22 Dec',                     'hotels',  'GBP', false],
+        ['Flight London to Barcelona, 22 Dec',             'flights', 'GBP', false],
+        ['Barcelona hotel, 22 to 26 Dec',                  'hotels',  'EUR', false],
+        ['Flight Barcelona to Lisbon, 26 Dec',             'flights', 'GBP', false],
+        ['Lisbon hotel, 26 to 30 Dec',                     'hotels',  'EUR', false],
+        ['Flight Lisbon to London, 30 Dec',                'flights', 'GBP', false],
+        ['London hotel, 30 Dec to 2 Jan',                  'hotels',  'GBP', false],
+        ["New Year's Eve fireworks tickets",               'tickets', 'GBP', false],
+        ['Sagrada Família tickets',                        'tickets', 'EUR', false],
+        ['UK ETA for each traveller',                      'other',   'GBP', false],
+        ['Travel insurance',                               'other',   'MYR', false]
+      ].map(function(r, i){ return { id:'d' + i, item:r[0], cat:r[1], cur:r[2], amt:'', paid:r[3] }; })
+    };
+  }
+
+  var state;
+  try { state = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) { state = null; }
+  if (!state || !state.rows || !state.rates) { state = defaults(); }
+
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  function num(v){
+    var n = parseFloat(String(v == null ? '' : v).replace(/[^0-9.\-]/g, ''));
+    return isFinite(n) ? n : 0;
+  }
+  function rate(cur){ return cur === 'GBP' ? 1 : (num(state.rates[cur]) || 1); }
+  function toGBP(row){ return num(row.amt) / rate(row.cur); }
+  function money(n, cur, dp){
+    var d = dp == null ? (Math.abs(n) < 1000 && n % 1 ? 2 : 0) : dp;
+    return (n < 0 ? '−' : '') + CUR[cur || 'GBP'] + Math.abs(n).toLocaleString('en-GB', { minimumFractionDigits:d, maximumFractionDigits:d });
+  }
+  function el(tag, attrs, kids){
+    var n = document.createElement(tag);
+    Object.keys(attrs || {}).forEach(function(k){
+      if (k === 'text') { n.textContent = attrs[k]; } else { n.setAttribute(k, attrs[k]); }
+    });
+    (kids || []).forEach(function(c){ n.appendChild(c); });
+    return n;
+  }
+
+  var list = $('cost-rows');
+
+  function rowEl(row){
+    var paid = el('input', { type:'checkbox', 'aria-label':'Paid' });
+    paid.checked = !!row.paid;
+    var item = el('input', { type:'text', class:'cost-input item', placeholder:'What is it?', 'aria-label':'Item' });
+    item.value = row.item;
+    var cat = el('select', { class:'cost-input', 'aria-label':'Category' });
+    CATS.forEach(function(c){ var o = el('option', { value:c.id, text:c.name }); cat.appendChild(o); });
+    cat.value = row.cat;
+    var cur = el('select', { class:'cost-input', 'aria-label':'Currency' });
+    Object.keys(CUR).forEach(function(k){ cur.appendChild(el('option', { value:k, text:CUR[k].trim() })); });
+    cur.value = row.cur;
+    var amt = el('input', { type:'text', inputmode:'decimal', class:'cost-input num', placeholder:'0', 'aria-label':'Amount' });
+    amt.value = row.amt;
+    var conv = el('span', { class:'cost-conv' });
+    var del = el('button', { type:'button', class:'cost-del', 'aria-label':'Remove this cost', title:'Remove', text:'×' });
+    var wrap = el('div', { class:'cost-row' + (row.paid ? ' paid' : '') }, [paid, item, cat, el('div', { class:'cost-amt' }, [cur, amt]), conv, del]);
+
+    function refresh(){
+      conv.textContent = row.amt === '' ? '—' : (row.cur === 'GBP' ? '' : money(toGBP(row), 'GBP'));
+      conv.classList.toggle('empty', !conv.textContent || row.amt === '');
+      wrap.classList.toggle('paid', !!row.paid);
+    }
+    paid.addEventListener('change', function(){ row.paid = paid.checked; refresh(); update(); });
+    item.addEventListener('input', function(){ row.item = item.value; save(); });
+    cat.addEventListener('change', function(){ row.cat = cat.value; update(); });
+    cur.addEventListener('change', function(){ row.cur = cur.value; refresh(); update(); });
+    amt.addEventListener('input', function(){ row.amt = amt.value.trim(); refresh(); update(); });
+    del.addEventListener('click', function(){
+      if (row.amt !== '' && !confirm('Remove "' + (row.item || 'this cost') + '"?')) { return; }
+      state.rows = state.rows.filter(function(r){ return r !== row; });
+      wrap.remove();
+      update();
+    });
+    wrap._refresh = refresh;
+    refresh();
+    return wrap;
+  }
+
+  function renderRows(){
+    list.textContent = '';
+    state.rows.forEach(function(r){ list.appendChild(rowEl(r)); });
+  }
+
+  function totals(){
+    var t = { all:0, paid:0, cat:{} };
+    state.rows.forEach(function(r){
+      var g = toGBP(r);
+      t.all += g;
+      if (r.paid) { t.paid += g; }
+      t.cat[r.cat] = (t.cat[r.cat] || 0) + g;
+    });
+    return t;
+  }
+
+  function update(){
+    save();
+    var t = totals();
+    var people = Math.max(1, Math.round(num(state.people)) || 1);
+    $('cost-total').textContent = money(t.all, 'GBP', 0);
+    $('cost-total-alt').textContent = money(t.all * rate('MYR'), 'MYR', 0) + ' · ' + money(t.all * rate('EUR'), 'EUR', 0);
+    $('cost-pp').textContent = money(t.all / people, 'GBP', 0);
+    $('cost-paid').textContent = money(t.paid, 'GBP', 0);
+    $('cost-left').textContent = money(t.all - t.paid, 'GBP', 0) + ' still to pay';
+    $('cost-empty').hidden = state.rows.length > 0;
+
+    var bar = $('cost-bar'), legend = $('cost-legend');
+    bar.textContent = ''; legend.textContent = '';
+    var used = CATS.filter(function(c){ return (t.cat[c.id] || 0) > 0; });
+    $('cost-mix').hidden = !used.length;
+    used.forEach(function(c){
+      var v = t.cat[c.id];
+      var s = el('span', { title:c.name + ': ' + money(v, 'GBP', 0) });
+      s.style.background = c.color; s.style.flexGrow = v;
+      bar.appendChild(s);
+      var dot = el('i'); dot.style.background = c.color;
+      legend.appendChild(el('li', {}, [dot, el('span', { text:c.name }), el('b', { text:money(v, 'GBP', 0) + ' · ' + Math.round(v / t.all * 100) + '%' })]));
+    });
+    bar.setAttribute('aria-label', 'Share of the total by category: ' + used.map(function(c){ return c.name + ' ' + Math.round(t.cat[c.id] / t.all * 100) + '%'; }).join(', '));
+  }
+
+  function flash(msg){
+    $('cost-status').textContent = msg;
+    clearTimeout(flash.t);
+    flash.t = setTimeout(function(){ $('cost-status').textContent = ''; }, 3000);
+  }
+
+  /* Controls */
+  $('cost-people').value = state.people;
+  $('cost-people').addEventListener('input', function(){ state.people = this.value; update(); });
+  $('rate-eur').value = state.rates.EUR;
+  $('rate-myr').value = state.rates.MYR;
+  ['EUR', 'MYR'].forEach(function(k){
+    $('rate-' + k.toLowerCase()).addEventListener('input', function(){
+      state.rates[k] = this.value;
+      Array.prototype.forEach.call(list.children, function(r){ r._refresh && r._refresh(); });
+      update();
+    });
+  });
+
+  $('cost-add').addEventListener('click', function(){
+    var row = { id:'r' + Date.now(), item:'', cat:'other', cur:'GBP', amt:'', paid:false };
+    state.rows.push(row);
+    var r = rowEl(row);
+    list.appendChild(r);
+    update();
+    r.querySelector('.item').focus();
+  });
+
+  function summary(){
+    var t = totals();
+    var people = Math.max(1, Math.round(num(state.people)) || 1);
+    var lines = ['Winter trip 2026: costs so far', ''];
+    state.rows.forEach(function(r){
+      if (r.amt === '') { return; }
+      lines.push('• ' + (r.item || 'Untitled') + ': ' + money(num(r.amt), r.cur) + (r.cur === 'GBP' ? '' : ' (' + money(toGBP(r), 'GBP') + ')') + (r.paid ? ' ✓ paid' : ''));
+    });
+    lines.push('', 'Total: ' + money(t.all, 'GBP', 0) + ' (' + money(t.all * rate('MYR'), 'MYR', 0) + ')');
+    lines.push('Per person (' + people + '): ' + money(t.all / people, 'GBP', 0));
+    lines.push('Paid: ' + money(t.paid, 'GBP', 0) + ' · Still to pay: ' + money(t.all - t.paid, 'GBP', 0));
+    return lines.join('\n');
+  }
+
+  $('cost-copy').addEventListener('click', function(){
+    var text = summary();
+    function fallback(){
+      var ta = el('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); flash('Summary copied. Paste it into WhatsApp or an email.'); }
+      catch (e) { flash('Could not copy here. Try Download CSV instead.'); }
+      ta.remove();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function(){ flash('Summary copied. Paste it into WhatsApp or an email.'); }, fallback);
+    } else { fallback(); }
+  });
+
+  $('cost-csv').addEventListener('click', function(){
+    function q(v){ v = String(v == null ? '' : v); return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }
+    var name = {}; CATS.forEach(function(c){ name[c.id] = c.name; });
+    var rows = [['Item', 'Category', 'Currency', 'Amount', 'In GBP', 'Paid']];
+    state.rows.forEach(function(r){
+      rows.push([r.item, name[r.cat] || r.cat, r.cur, r.amt === '' ? '' : num(r.amt), r.amt === '' ? '' : toGBP(r).toFixed(2), r.paid ? 'Yes' : 'No']);
+    });
+    var t = totals();
+    rows.push([], ['Total', '', 'GBP', '', t.all.toFixed(2), '']);
+    rows.push(['Rates', '£1 = €' + state.rates.EUR, '£1 = RM' + state.rates.MYR]);
+    var blob = new Blob(['﻿' + rows.map(function(r){ return r.map(q).join(','); }).join('\r\n')], { type:'text/csv;charset=utf-8' });
+    var a = el('a', { href:URL.createObjectURL(blob), download:'winter-trip-2026-costs.csv' });
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
+  });
+
+  $('cost-reset').addEventListener('click', function(){
+    if (!confirm('Clear every amount and go back to the starting list?')) { return; }
+    state = defaults();
+    $('cost-people').value = state.people;
+    $('rate-eur').value = state.rates.EUR;
+    $('rate-myr').value = state.rates.MYR;
+    renderRows();
+    update();
+  });
+
+  renderRows();
+  update();
 })();
 </script>
 </body>

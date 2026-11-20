@@ -623,9 +623,9 @@ footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:2px}
           <span class="pill ok">Booked</span>
         </li>
         <li>
-          <input type="checkbox" id="c-hotel-bcn">
-          <label for="c-hotel-bcn"><span class="what">Barcelona, 22 to 26 Dec (4 nights)</span><span class="note">Eixample, near Passeig de Gràcia: flat, central, on the metro.</span></label>
-          <span class="pill warn">To book</span>
+          <input type="checkbox" id="c-hotel-bcn2" checked>
+          <label for="c-hotel-bcn2"><span class="what">Barcelona, 22 to 26 Dec (4 nights)</span><span class="note">INNSiDE Barcelona Apolo, Connecting INNSiDE Room, four single beds requested. Prepaid and non-refundable. City tax of €147.84 is paid at check-in. Booking reference is in the confirmation email.</span></label>
+          <span class="pill ok">Booked</span>
         </li>
         <li>
           <input type="checkbox" id="c-hotel-lis">
@@ -645,7 +645,12 @@ footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:2px}
       <ul class="todo">
         <li>
           <input type="checkbox" id="c-sagrada">
-          <label for="c-sagrada"><span class="what">Sagrada Família (23 Dec) and Park Güell (24 Dec)</span><span class="note">Timed tickets. Christmas week sells out, so book once the Barcelona dates are fixed.</span></label>
+          <label for="c-sagrada"><span class="what">Sagrada Família (23 Dec) and Park Güell (22 Dec)</span><span class="note">Timed tickets. Christmas week sells out, so book once the Barcelona dates are fixed.</span></label>
+          <span class="pill warn">To book</span>
+        </li>
+        <li>
+          <input type="checkbox" id="c-montserrat">
+          <label for="c-montserrat"><span class="what">Montserrat day trip (24 Dec)</span><span class="note">A combined ticket from Plaça d'Espanya covers the train and the rack railway or cable car up the mountain. Check the Christmas timetable in early December.</span></label>
           <span class="pill warn">To book</span>
         </li>
         <li>
@@ -875,6 +880,7 @@ footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:2px}
           <ul class="plan">
             <li><span class="slot">Morning</span><span class="txt">Check out. London City Airport is three DLR stops from Canning Town, so a British Airways flight from there is the easy option if one runs that day. Otherwise go from Heathrow or Gatwick.</span></li>
             <li><span class="slot">Flight</span><span class="txt">About 2h 10m. Barcelona is one hour ahead of London.</span></li>
+            <li><span class="slot">Afternoon</span><span class="txt">Check in at INNSiDE Barcelona Apolo from 3pm, or drop the bags earlier. Then a taxi up to Park Güell for a timed late-afternoon slot, with the city spread out below.</span></li>
             <li><span class="slot">Evening</span><span class="txt">Walk the Gothic Quarter to the Fira de Santa Llúcia, the Christmas market in front of the cathedral. Open until 9pm.</span></li>
           </ul>
           <p class="heads"><b>Border:</b> this is the first entry to the Schengen area, so expect fingerprints and a photo at passport control.</p>
@@ -889,18 +895,18 @@ footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:2px}
       <div>
         <p class="kicker">Stop 2 of 4 · Tue 22 to Sat 26 Dec · 4 nights</p>
         <h3 class="ch-city">Barcelona, <em>Bon Nadal</em></h3>
-        <p class="ch-line">Christmas somewhere mild: Gaudí in the morning, the sea in the afternoon, and streets that stay open while London shuts for the day.</p>
+        <p class="ch-line">Christmas somewhere mild: Gaudí, a morning up in the mountains at Montserrat, and lunch by the sea on Christmas Day.</p>
       </div>
       <svg class="skyline" aria-hidden="true"><use href="#sky-barcelona"/></svg>
       <dl class="facts">
         <div><dt>Weather</dt><dd>8 to 15 °C, often sunny</dd></div>
         <div><dt>Clock</dt><dd>7 hours behind KL</dd></div>
         <div><dt>Dark by</dt><dd>5:30pm</dd></div>
-        <div><dt>Getting around</dt><dd>Metro and short taxi rides</dd></div>
+        <div><dt>Getting around</dt><dd>On foot, metro and short taxi rides</dd></div>
       </dl>
     </header>
     <div class="extras">
-      <div class="extra stay"><b>Stay · to book</b>Four nights in Eixample, near Passeig de Gràcia.</div>
+      <div class="extra stay"><b>Stay · booked</b>INNSiDE Barcelona Apolo on Avinguda del Paral·lel, at the edge of the old town. Connecting rooms, room only. Check-in from 3pm, check-out by noon. Paral·lel and Poble Sec metro stations are close by, and Plaça d'Espanya is two stops on line 3.</div>
       <div class="extra"><b>Taste</b>Pa amb tomàquet, patatas bravas, churros with thick hot chocolate, and turrón at Christmas.</div>
       <div class="extra"><b>Local tradition</b>Caga Tió, the smiling Christmas log that children tap with sticks until it gives up sweets. The market sells them in every size.</div>
       <div class="extra"><b>If it rains</b>The Aquarium at Port Vell or the CosmoCaixa science museum. Check holiday hours.</div>
@@ -922,13 +928,14 @@ footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:2px}
       <article class="day" data-date="2026-12-24">
         <div class="date"><span class="dow">Thu</span><span class="num">24</span><span class="mon">Dec</span></div>
         <div class="day-body">
-          <div class="day-title"><h4>Park Güell and the old town</h4><span class="pill info">Christmas Eve</span></div>
+          <div class="day-title"><h4>Day trip to Montserrat</h4><span class="pill info">Christmas Eve</span></div>
           <ul class="plan">
-            <li><span class="slot">Morning</span><span class="txt">Park Güell with timed tickets, then coffee in Gràcia.</span></li>
-            <li><span class="slot">Afternoon</span><span class="txt">La Boqueria market and the lanes around the cathedral.</span></li>
-            <li><span class="slot">Evening</span><span class="txt">Dinner at a table reserved in advance. Hotel restaurants are the safe choice tonight.</span></li>
+            <li><span class="slot">Morning</span><span class="txt">Early train from Plaça d'Espanya, two metro stops from the hotel. Just over an hour to the foot of the mountain, then the rack railway or cable car up to the monastery.</span></li>
+            <li><span class="slot">Late morning</span><span class="txt">The basilica and the Black Madonna, then the Sant Joan funicular higher up for the view over the jagged peaks.</span></li>
+            <li><span class="slot">Afternoon</span><span class="txt">Back in Barcelona by mid-afternoon. Rest at the hotel while the city closes up for Christmas Eve.</span></li>
+            <li><span class="slot">Evening</span><span class="txt">Christmas Eve dinner at a table reserved in advance.</span></li>
           </ul>
-          <p class="heads"><b>Early closing:</b> markets and shops shut in the afternoon, and many restaurants do not open for dinner.</p>
+          <p class="heads"><b>Early closing:</b> markets and shops shut in the afternoon, and many restaurants do not open for dinner. Bring a warm layer for Montserrat: it is colder up the mountain.</p>
         </div>
       </article>
 
@@ -1176,12 +1183,13 @@ footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:2px}
 </main>
 
 <footer>
-  <p>Opening times, ticket dates and entry rules were checked on 15 and 16 November 2026 and can change. Confirm each one when booking.</p>
+  <p>Opening times, ticket dates and entry rules were checked between 15 and 20 November 2026 and can change. Confirm each one when booking.</p>
   <ul>
     <li><a href="https://www.london.gov.uk/NYE">Mayor of London: New Year's Eve 2026 tickets and viewing areas</a></li>
     <li><a href="https://www.visitlondon.com/things-to-do/event/42844535-new-year-s-day-in-london">Visit London: New Year's Day and the parade</a></li>
     <li><a href="https://hydeparkwinterwonderland.com/tickets-guide/">Hyde Park Winter Wonderland: dates and tickets</a></li>
     <li><a href="https://sagradafamilia.org/en/schedules-how-to-get">Sagrada Família: opening hours</a></li>
+    <li><a href="https://www.montserratvisita.com/en/practical-information/faqs">Montserrat: visitor information and Christmas timetables</a></li>
     <li><a href="https://agenda500.barcelona.cat/en/detall/santa-llucia-fair_1346175546.html">Barcelona city agenda: Fira de Santa Llúcia</a></li>
     <li><a href="https://www.theportugalnews.com/news/2025-12-23/museums-and-public-monuments-closed-for-holidays/935488">The Portugal News: holiday closures of national monuments</a></li>
     <li><a href="https://www.timeout.pt/lisboa/pt/noticias/torre-de-belem-reabre-a-26-de-maio-e-com-novo-modelo-para-as-visitas-052026">Time Out Lisboa: Belém Tower reopening</a></li>
@@ -1383,7 +1391,7 @@ var GEO={"land":{"type":"MultiPolygon","coordinates":[[[[178.1,-17.5],[178.4,-17
       lon: { at: LON, name: 'London', color: '#f7939a', z: 3, label: [0, -14, 'center'], always: true,
         info: '<strong>London.</strong> Sun 20 to Tue 22 Dec, then back Wed 30 Dec to Sat 2 Jan for New Year. <a href="#london">First stop</a> · <a href="#new-year">New Year</a>' },
       bcn: { at: BCN, name: 'Barcelona', color: '#f6c15c', z: 3, label: [13, 5, 'left'],
-        info: '<strong>Barcelona.</strong> Tue 22 to Sat 26 Dec. Christmas by the sea. <a href="#barcelona">See the plan</a>' },
+        info: '<strong>Barcelona.</strong> Tue 22 to Sat 26 Dec. Gaudí, a day up Montserrat, and Christmas by the sea. <a href="#barcelona">See the plan</a>' },
       lis: { at: LIS, name: 'Lisbon', color: '#86c8f5', z: 3, label: [-13, 5, 'right'],
         info: '<strong>Lisbon.</strong> Sat 26 to Wed 30 Dec, with a day in Sintra. <a href="#lisbon">See the plan</a>' }
     };
@@ -1621,22 +1629,38 @@ var GEO={"land":{"type":"MultiPolygon","coordinates":[[[[178.1,-17.5],[178.4,-17
         ['Qatar Airways, Kuala Lumpur to London and back', 'flights', 'MYR', true],
         ['London hotel, 20 to 22 Dec',                     'hotels',  'GBP', false],
         ['Flight London to Barcelona, 22 Dec',             'flights', 'GBP', false],
-        ['Barcelona hotel, 22 to 26 Dec',                  'hotels',  'EUR', false],
+        ['INNSiDE Barcelona Apolo, 22 to 26 Dec (prepaid)', 'hotels', 'EUR', true, '899.16'],
+        ['Barcelona city tax, paid at the hotel',          'hotels',  'EUR', false, '147.84'],
         ['Flight Barcelona to Lisbon, 26 Dec',             'flights', 'GBP', false],
         ['Lisbon hotel, 26 to 30 Dec',                     'hotels',  'EUR', false],
         ['Flight Lisbon to London, 30 Dec',                'flights', 'GBP', false],
         ['London hotel, 30 Dec to 2 Jan',                  'hotels',  'GBP', false],
         ["New Year's Eve fireworks tickets",               'tickets', 'GBP', false],
         ['Sagrada Família tickets',                        'tickets', 'EUR', false],
+        ['Montserrat day trip tickets',                    'tickets', 'EUR', false],
         ['UK ETA for each traveller',                      'other',   'GBP', false],
         ['Travel insurance',                               'other',   'MYR', false]
-      ].map(function(r, i){ return { id:'d' + i, item:r[0], cat:r[1], cur:r[2], amt:'', paid:r[3] }; })
+      ].map(function(r, i){ return { id:'d' + i, item:r[0], cat:r[1], cur:r[2], amt:r[4] || '', paid:r[3] }; }),
+      v: 2
     };
   }
 
   var state;
   try { state = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) { state = null; }
   if (!state || !state.rows || !state.rates) { state = defaults(); }
+  /* One-time update for lists saved before the Barcelona hotel was booked */
+  if (!state.v || state.v < 2) {
+    var bcn = state.rows.filter(function(r){ return r.item === 'Barcelona hotel, 22 to 26 Dec' && r.amt === ''; })[0];
+    if (bcn) {
+      bcn.item = 'INNSiDE Barcelona Apolo, 22 to 26 Dec (prepaid)'; bcn.cur = 'EUR'; bcn.amt = '899.16'; bcn.paid = true;
+      var at = state.rows.indexOf(bcn) + 1;
+      state.rows.splice(at, 0, { id:'m1', item:'Barcelona city tax, paid at the hotel', cat:'hotels', cur:'EUR', amt:'147.84', paid:false });
+    }
+    if (!state.rows.some(function(r){ return /Montserrat/.test(r.item); })) {
+      state.rows.push({ id:'m2', item:'Montserrat day trip tickets', cat:'tickets', cur:'EUR', amt:'', paid:false });
+    }
+    state.v = 2;
+  }
 
   function save(){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
   function num(v){

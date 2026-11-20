@@ -597,9 +597,9 @@ footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:2px}
           <span class="pill ok">Booked</span>
         </li>
         <li>
-          <input type="checkbox" id="c-fl-bcn">
-          <label for="c-fl-bcn"><span class="what">London to Barcelona, Tue 22 Dec</span><span class="note">British Airways from London City (closest to the hotel, limited schedule) or Heathrow; Vueling from Gatwick. About 2h 10m.</span></label>
-          <span class="pill warn">To book</span>
+          <input type="checkbox" id="c-fl-bcn2" checked>
+          <label for="c-fl-bcn2"><span class="what">London to Barcelona, Tue 22 Dec</span><span class="note">BA486, Heathrow Terminal 5 at 14:40, landing 17:55. Basic fare: a cabin bag and a small handbag each, plus two 23 kg checked bags. Non-refundable. Seats are free at check-in, 24 hours before.</span></label>
+          <span class="pill ok">Booked</span>
         </li>
         <li>
           <input type="checkbox" id="c-fl-lis">
@@ -645,7 +645,7 @@ footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:2px}
       <ul class="todo">
         <li>
           <input type="checkbox" id="c-sagrada">
-          <label for="c-sagrada"><span class="what">Sagrada Família (23 Dec) and Park Güell (22 Dec)</span><span class="note">Timed tickets. Christmas week sells out, so book once the Barcelona dates are fixed.</span></label>
+          <label for="c-sagrada"><span class="what">Sagrada Família and Park Güell (both 23 Dec)</span><span class="note">Timed tickets. Christmas week sells out, so book once the Barcelona dates are fixed.</span></label>
           <span class="pill warn">To book</span>
         </li>
         <li>
@@ -728,8 +728,8 @@ footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:2px}
 <section id="flights">
   <div class="sec-head">
     <div>
-      <h2>The long flights</h2>
-      <p class="muted small">Qatar Airways, all four confirmed. Times are local to each airport.</p>
+      <h2>Flights</h2>
+      <p class="muted small">Qatar Airways for the long haul, all four confirmed, then the hops around Europe as they are booked. Times are local to each airport.</p>
     </div>
   </div>
 
@@ -786,6 +786,22 @@ footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:2px}
         </div>
         <div class="pass-stub"><dl><div><dt>Flight</dt><dd class="no">QR852</dd></div><div><dt>Date</dt><dd>Sun 3 Jan</dd></div><div><dt>Fare</dt><dd>Economy Convenience</dd></div></dl></div>
       </article>
+    </div>
+
+    <div class="journey">
+      <h3>Within Europe <span>Cabin bag each · 2 × 23 kg</span></h3>
+      <article class="pass">
+        <div class="pass-main">
+          <div class="pass-top"><span>British Airways</span><span class="pill ok">Booked</span></div>
+          <div class="pass-route">
+            <div class="end"><span class="code">LHR</span><span class="time">14:40</span><span class="place">Heathrow, Terminal 5</span></div>
+            <div class="mid"><svg aria-hidden="true"><use href="#plane"/></svg><i></i><span>2h 15m</span></div>
+            <div class="end arr"><span class="code">BCN</span><span class="time">17:55</span><span class="place">Barcelona, Terminal 1</span></div>
+          </div>
+        </div>
+        <div class="pass-stub"><dl><div><dt>Flight</dt><dd class="no">BA486</dd></div><div><dt>Date</dt><dd>Tue 22 Dec</dd></div><div><dt>Fare</dt><dd>Euro Traveller Basic</dd></div></dl></div>
+      </article>
+      <p class="small muted">Barcelona to Lisbon on 26 Dec and Lisbon to London on 30 Dec are still to book.</p>
     </div>
   </div>
   <p class="small muted" style="max-width:70ch">The return connection in Doha is short at 1h 40m. Both flights are on one ticket, so Qatar rebooks you if the first one runs late. The baggage allowance is 10 kg lower on the way home.</p>
@@ -876,14 +892,14 @@ footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:2px}
       <article class="day travel" data-date="2026-12-22">
         <div class="date"><span class="dow">Tue</span><span class="num">22</span><span class="mon">Dec</span></div>
         <div class="day-body">
-          <div class="day-title"><svg aria-hidden="true"><use href="#plane"/></svg><h4>Fly to Barcelona</h4><span class="pill warn">Flight to book</span></div>
+          <div class="day-title"><svg aria-hidden="true"><use href="#plane"/></svg><h4>Fly to Barcelona</h4><span class="pill ok">Booked</span></div>
           <ul class="plan">
-            <li><span class="slot">Morning</span><span class="txt">Check out. London City Airport is three DLR stops from Canning Town, so a British Airways flight from there is the easy option if one runs that day. Otherwise go from Heathrow or Gatwick.</span></li>
-            <li><span class="slot">Flight</span><span class="txt">About 2h 10m. Barcelona is one hour ahead of London.</span></li>
-            <li><span class="slot">Afternoon</span><span class="txt">Check in at INNSiDE Barcelona Apolo from 3pm, or drop the bags earlier. Then a taxi up to Park Güell for a timed late-afternoon slot, with the city spread out below.</span></li>
-            <li><span class="slot">Evening</span><span class="txt">Walk the Gothic Quarter to the Fira de Santa Llúcia, the Christmas market in front of the cathedral. Open until 9pm.</span></li>
+            <li><span class="slot">Morning</span><span class="txt">Slow breakfast, pack and check out. Leave Canning Town by about 11:15.</span></li>
+            <li><span class="slot">Midday</span><span class="txt">Elizabeth line from Custom House to Heathrow Terminal 5, about 1h 15m (some trains need a change at Paddington). With bags, a pre-booked car is easier. Aim to be at Terminal 5 by 12:40.</span></li>
+            <li><span class="slot">14:40</span><span class="txt">BA486 from Heathrow Terminal 5, landing at Barcelona Terminal 1 at 17:55. Barcelona is one hour ahead of London.</span></li>
+            <li><span class="slot">Evening</span><span class="txt">Taxi to INNSiDE Barcelona Apolo, about 25 to 30 minutes. Dinner near the hotel. If everyone still has energy, the cathedral Christmas market is open until 9pm, about 20 minutes on foot.</span></li>
           </ul>
-          <p class="heads"><b>Border:</b> this is the first entry to the Schengen area, so expect fingerprints and a photo at passport control.</p>
+          <p class="heads"><b>Border:</b> this is the first entry to the Schengen area, so expect fingerprints and a photo at passport control. <b>Bags:</b> one cabin bag and one small handbag each, plus two 23 kg checked bags between the four.</p>
         </div>
       </article>
     </div>
@@ -918,9 +934,9 @@ footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:2px}
           <div class="day-title"><h4>Gaudí day</h4></div>
           <ul class="plan">
             <li><span class="slot">Morning</span><span class="txt">Sagrada Família with timed tickets. Normal winter hours today, 9:00 to 18:00.</span></li>
-            <li><span class="slot">Lunch</span><span class="txt">Eixample.</span></li>
-            <li><span class="slot">Afternoon</span><span class="txt">Passeig de Gràcia for Casa Batlló and La Pedrera. Go inside one and admire the other from the street.</span></li>
-            <li><span class="slot">Evening</span><span class="txt">Tapas in El Born. Last day of the cathedral Christmas market if you missed it.</span></li>
+            <li><span class="slot">Lunch</span><span class="txt">Gràcia, on the way up to the park.</span></li>
+            <li><span class="slot">Afternoon</span><span class="txt">Park Güell with timed tickets. A taxi up saves a steep climb.</span></li>
+            <li><span class="slot">Evening</span><span class="txt">Walk down Passeig de Gràcia past Casa Batlló and La Pedrera lit up for Christmas, on to the cathedral Christmas market on its last day (until 9pm), then tapas in El Born.</span></li>
           </ul>
         </div>
       </article>
@@ -1628,7 +1644,7 @@ var GEO={"land":{"type":"MultiPolygon","coordinates":[[[[178.1,-17.5],[178.4,-17
       rows: [
         ['Qatar Airways, Kuala Lumpur to London and back', 'flights', 'MYR', true],
         ['London hotel, 20 to 22 Dec',                     'hotels',  'GBP', false],
-        ['Flight London to Barcelona, 22 Dec',             'flights', 'GBP', false],
+        ['BA486 London to Barcelona, 22 Dec (with 2 bags)', 'flights', 'GBP', true, '630.20'],
         ['INNSiDE Barcelona Apolo, 22 to 26 Dec (prepaid)', 'hotels', 'EUR', true, '899.16'],
         ['Barcelona city tax, paid at the hotel',          'hotels',  'EUR', false, '147.84'],
         ['Flight Barcelona to Lisbon, 26 Dec',             'flights', 'GBP', false],
@@ -1641,7 +1657,7 @@ var GEO={"land":{"type":"MultiPolygon","coordinates":[[[[178.1,-17.5],[178.4,-17
         ['UK ETA for each traveller',                      'other',   'GBP', false],
         ['Travel insurance',                               'other',   'MYR', false]
       ].map(function(r, i){ return { id:'d' + i, item:r[0], cat:r[1], cur:r[2], amt:r[4] || '', paid:r[3] }; }),
-      v: 2
+      v: 3
     };
   }
 
@@ -1660,6 +1676,11 @@ var GEO={"land":{"type":"MultiPolygon","coordinates":[[[[178.1,-17.5],[178.4,-17
       state.rows.push({ id:'m2', item:'Montserrat day trip tickets', cat:'tickets', cur:'EUR', amt:'', paid:false });
     }
     state.v = 2;
+  }
+  if (state.v < 3) {
+    var ba = state.rows.filter(function(r){ return r.item === 'Flight London to Barcelona, 22 Dec' && r.amt === ''; })[0];
+    if (ba) { ba.item = 'BA486 London to Barcelona, 22 Dec (with 2 bags)'; ba.cur = 'GBP'; ba.amt = '630.20'; ba.paid = true; }
+    state.v = 3;
   }
 
   function save(){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }

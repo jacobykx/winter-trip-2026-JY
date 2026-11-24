@@ -516,13 +516,13 @@ footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:2px}
 <nav class="nav" aria-label="Sections">
   <div class="nav-inner">
     <a href="#to-book">To book</a>
-    <a href="#costs">Costs</a>
     <a href="#flights">Flights</a>
     <a href="#london">London</a>
     <a href="#barcelona">Barcelona</a>
     <a href="#lisbon">Lisbon</a>
     <a href="#new-year">New Year</a>
     <a href="#before-you-fly">Before you fly</a>
+    <a href="#costs">Costs</a>
   </div>
 </nav>
 
@@ -603,7 +603,7 @@ footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:2px}
         </li>
         <li>
           <input type="checkbox" id="c-fl-lis">
-          <label for="c-fl-lis"><span class="what">Barcelona to Lisbon, Sat 26 Dec</span><span class="note">Direct with TAP, Vueling, easyJet or Ryanair. About 2 hours.</span></label>
+          <label for="c-fl-lis"><span class="what">Barcelona to Lisbon, Sat 26 Dec</span><span class="note">Pick: Vueling 12:15 from Barcelona Terminal 1, landing in Lisbon at 13:25. About £345 for four on 24 Nov, before bags. Add two checked bags. Backup: easyJet 10:40 from Terminal 2, landing 11:50, a similar price.</span></label>
           <span class="pill warn">To book</span>
         </li>
         <li>
@@ -669,62 +669,6 @@ footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:2px}
 </section>
 
 <!-- FLIGHTS -->
-<section id="costs">
-  <div class="sec-head">
-    <div>
-      <h2>Costs</h2>
-      <p class="muted small">Add each cost in pounds, euros or ringgit and the totals update as you type. Costs are saved in this browser only, so use Copy summary to share them with the family.</p>
-    </div>
-  </div>
-
-  <div class="cost-top">
-    <div class="cstat total">
-      <span class="lbl">Trip total</span>
-      <span class="big" id="cost-total">£0</span>
-      <span class="sub" id="cost-total-alt">RM 0 · €0</span>
-    </div>
-    <div class="cstat">
-      <span class="lbl">Per person</span>
-      <span class="big" id="cost-pp">£0</span>
-      <span class="sub people"><span>Split between</span><input class="cost-input num" id="cost-people" type="number" min="1" max="20" step="1" value="4" aria-label="Number of people sharing the cost"><span>people</span></span>
-    </div>
-    <div class="cstat">
-      <span class="lbl">Paid so far</span>
-      <span class="big" id="cost-paid">£0</span>
-      <span class="sub" id="cost-left">£0 still to pay</span>
-    </div>
-  </div>
-
-  <div class="cost-mix" id="cost-mix" hidden>
-    <div class="cost-bar" id="cost-bar" role="img" aria-label="Share of the total by category"></div>
-    <ul class="cost-legend" id="cost-legend"></ul>
-  </div>
-
-  <div class="cost-list">
-    <div class="cost-head" aria-hidden="true">
-      <span title="Paid">Paid</span><span>Item</span><span>Category</span><span class="r">Amount</span><span class="r">In £</span><span></span>
-    </div>
-    <div id="cost-rows"></div>
-    <p class="cost-empty" id="cost-empty" hidden>No costs yet. Add the first one below.</p>
-    <div class="cost-foot">
-      <button type="button" class="btn primary" id="cost-add">+ Add a cost</button>
-      <div class="cost-btns">
-        <button type="button" class="btn" id="cost-copy">Copy summary</button>
-        <button type="button" class="btn" id="cost-csv">Download CSV</button>
-        <button type="button" class="btn quiet" id="cost-reset">Start over</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="cost-rates">
-    <span>Exchange rates used for the totals:</span>
-    <label>£1 = €<input class="cost-input num" id="rate-eur" type="text" inputmode="decimal" aria-label="Euros per pound"></label>
-    <label>£1 = RM<input class="cost-input num" id="rate-myr" type="text" inputmode="decimal" aria-label="Ringgit per pound"></label>
-    <span>Rough rates from November 2026. Change them to the rate you actually paid.</span>
-    <span class="cost-status" id="cost-status" role="status" aria-live="polite"></span>
-  </div>
-</section>
-
 <section id="flights">
   <div class="sec-head">
     <div>
@@ -801,7 +745,18 @@ footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:2px}
         </div>
         <div class="pass-stub"><dl><div><dt>Flight</dt><dd class="no">BA486</dd></div><div><dt>Date</dt><dd>Tue 22 Dec</dd></div><div><dt>Fare</dt><dd>Euro Traveller Basic</dd></div></dl></div>
       </article>
-      <p class="small muted">Barcelona to Lisbon on 26 Dec and Lisbon to London on 30 Dec are still to book.</p>
+      <article class="pass">
+        <div class="pass-main">
+          <div class="pass-top"><span>Vueling · the pick</span><span class="pill warn">To book</span></div>
+          <div class="pass-route">
+            <div class="end"><span class="code">BCN</span><span class="time">12:15</span><span class="place">Barcelona, Terminal 1</span></div>
+            <div class="mid"><svg aria-hidden="true"><use href="#plane"/></svg><i></i><span>2h 10m</span></div>
+            <div class="end arr"><span class="code">LIS</span><span class="time">13:25</span><span class="place">Lisbon Humberto Delgado</span></div>
+          </div>
+        </div>
+        <div class="pass-stub"><dl><div><dt>Flight</dt><dd class="no">Vueling</dd></div><div><dt>Date</dt><dd>Sat 26 Dec</dd></div><div><dt>Fare</dt><dd>About £345 for 4</dd></div></dl></div>
+      </article>
+      <p class="small muted">Lisbon to London on 30 Dec is still to book.</p>
     </div>
   </div>
   <p class="small muted" style="max-width:70ch">The return connection in Doha is short at 1h 40m. Both flights are on one ticket, so Qatar rebooks you if the first one runs late. The baggage allowance is 10 kg lower on the way home.</p>
@@ -973,8 +928,10 @@ footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:2px}
         <div class="day-body">
           <div class="day-title"><svg aria-hidden="true"><use href="#plane"/></svg><h4>Fly to Lisbon</h4><span class="pill warn">Flight to book</span><span class="pill info">Holiday in Catalonia</span></div>
           <ul class="plan">
-            <li><span class="slot">Morning</span><span class="txt">Shops are closed again for Sant Esteve. Pack and have a last coffee.</span></li>
-            <li><span class="slot">Flight</span><span class="txt">A midday direct flight, about 2 hours. Lisbon is one hour behind Barcelona. No passport control, as both are in Schengen.</span></li>
+            <li><span class="slot">Morning</span><span class="txt">Shops are closed again for Sant Esteve. Breakfast nearby, pack and check out.</span></li>
+            <li><span class="slot">09:45</span><span class="txt">Taxi from the hotel to Barcelona Terminal 1, about 25 to 30 minutes on quiet holiday roads.</span></li>
+            <li><span class="slot">12:15</span><span class="txt">Vueling to Lisbon, landing at 13:25 local time. Lisbon is one hour behind Barcelona. No passport control, as both are in Schengen.</span></li>
+            <li><span class="slot">Afternoon</span><span class="txt">Taxi or metro into the centre, about 20 to 25 minutes, and check in.</span></li>
             <li><span class="slot">Evening</span><span class="txt">Christmas lights at Praça do Comércio and dinner in Chiado.</span></li>
           </ul>
         </div>
@@ -1193,6 +1150,62 @@ footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:2px}
         </tbody>
       </table>
     </div>
+  </div>
+</section>
+
+<section id="costs">
+  <div class="sec-head">
+    <div>
+      <h2>Costs</h2>
+      <p class="muted small">Add each cost in pounds, euros or ringgit and the totals update as you type. Costs are saved in this browser only, so use Copy summary to share them with the family.</p>
+    </div>
+  </div>
+
+  <div class="cost-top">
+    <div class="cstat total">
+      <span class="lbl">Trip total</span>
+      <span class="big" id="cost-total">£0</span>
+      <span class="sub" id="cost-total-alt">RM 0 · €0</span>
+    </div>
+    <div class="cstat">
+      <span class="lbl">Per person</span>
+      <span class="big" id="cost-pp">£0</span>
+      <span class="sub people"><span>Split between</span><input class="cost-input num" id="cost-people" type="number" min="1" max="20" step="1" value="4" aria-label="Number of people sharing the cost"><span>people</span></span>
+    </div>
+    <div class="cstat">
+      <span class="lbl">Paid so far</span>
+      <span class="big" id="cost-paid">£0</span>
+      <span class="sub" id="cost-left">£0 still to pay</span>
+    </div>
+  </div>
+
+  <div class="cost-mix" id="cost-mix" hidden>
+    <div class="cost-bar" id="cost-bar" role="img" aria-label="Share of the total by category"></div>
+    <ul class="cost-legend" id="cost-legend"></ul>
+  </div>
+
+  <div class="cost-list">
+    <div class="cost-head" aria-hidden="true">
+      <span title="Paid">Paid</span><span>Item</span><span>Category</span><span class="r">Amount</span><span class="r">In £</span><span></span>
+    </div>
+    <div id="cost-rows"></div>
+    <p class="cost-empty" id="cost-empty" hidden>No costs yet. Add the first one below.</p>
+    <div class="cost-foot">
+      <button type="button" class="btn primary" id="cost-add">+ Add a cost</button>
+      <div class="cost-btns">
+        <button type="button" class="btn" id="cost-copy">Copy summary</button>
+        <button type="button" class="btn" id="cost-csv">Download CSV</button>
+        <button type="button" class="btn quiet" id="cost-reset">Start over</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="cost-rates">
+    <span>Exchange rates used for the totals:</span>
+    <label>£1 = €<input class="cost-input num" id="rate-eur" type="text" inputmode="decimal" aria-label="Euros per pound"></label>
+    <label>£1 = RM<input class="cost-input num" id="rate-myr" type="text" inputmode="decimal" aria-label="Ringgit per pound"></label>
+    <span>Rough rates from November 2026. Change them to the rate you actually paid.</span>
+    <span class="cost-status" id="cost-status" role="status" aria-live="polite"></span>
   </div>
 </section>
 
@@ -1643,11 +1656,11 @@ var GEO={"land":{"type":"MultiPolygon","coordinates":[[[[178.1,-17.5],[178.4,-17
       rates: { EUR: 1.19, MYR: 5.45 },
       rows: [
         ['Qatar Airways, Kuala Lumpur to London and back', 'flights', 'MYR', true],
-        ['London hotel, 20 to 22 Dec',                     'hotels',  'GBP', false],
+        ['London hotel, 20 to 22 Dec',                     'hotels',  'GBP', true, '176'],
         ['BA486 London to Barcelona, 22 Dec (with 2 bags)', 'flights', 'GBP', true, '630.20'],
         ['INNSiDE Barcelona Apolo, 22 to 26 Dec (prepaid)', 'hotels', 'EUR', true, '899.16'],
         ['Barcelona city tax, paid at the hotel',          'hotels',  'EUR', false, '147.84'],
-        ['Flight Barcelona to Lisbon, 26 Dec',             'flights', 'GBP', false],
+        ['Vueling Barcelona to Lisbon, 26 Dec (about £345 + bags)', 'flights', 'GBP', false],
         ['Lisbon hotel, 26 to 30 Dec',                     'hotels',  'EUR', false],
         ['Flight Lisbon to London, 30 Dec',                'flights', 'GBP', false],
         ['London hotel, 30 Dec to 2 Jan',                  'hotels',  'GBP', false],
@@ -1657,7 +1670,7 @@ var GEO={"land":{"type":"MultiPolygon","coordinates":[[[[178.1,-17.5],[178.4,-17
         ['UK ETA for each traveller',                      'other',   'GBP', false],
         ['Travel insurance',                               'other',   'MYR', false]
       ].map(function(r, i){ return { id:'d' + i, item:r[0], cat:r[1], cur:r[2], amt:r[4] || '', paid:r[3] }; }),
-      v: 3
+      v: 4
     };
   }
 
@@ -1681,6 +1694,25 @@ var GEO={"land":{"type":"MultiPolygon","coordinates":[[[[178.1,-17.5],[178.4,-17
     var ba = state.rows.filter(function(r){ return r.item === 'Flight London to Barcelona, 22 Dec' && r.amt === ''; })[0];
     if (ba) { ba.item = 'BA486 London to Barcelona, 22 Dec (with 2 bags)'; ba.cur = 'GBP'; ba.amt = '630.20'; ba.paid = true; }
     state.v = 3;
+  }
+  if (state.v < 4) {
+    var find = function(re){ return state.rows.filter(function(r){ return re.test(r.item); })[0]; };
+    var lon = find(/^London hotel, 20 to 22 Dec/);
+    if (lon && lon.amt === '') { lon.amt = '176'; lon.cur = 'GBP'; lon.paid = true; }
+    var hotel = find(/INNSiDE|^Barcelona hotel/);
+    if (!hotel) {
+      var after = state.rows.indexOf(find(/London to Barcelona/)) + 1 || state.rows.length;
+      hotel = { id:'m3', item:'', cat:'hotels', cur:'EUR', amt:'', paid:true };
+      state.rows.splice(after, 0, hotel);
+    }
+    if (hotel.amt === '') { hotel.item = 'INNSiDE Barcelona Apolo, 22 to 26 Dec (prepaid)'; hotel.cur = 'EUR'; hotel.amt = '899.16'; hotel.paid = true; }
+    if (!find(/city tax/i)) {
+      state.rows.splice(state.rows.indexOf(hotel) + 1, 0, { id:'m4', item:'Barcelona city tax, paid at the hotel', cat:'hotels', cur:'EUR', amt:'147.84', paid:false });
+    }
+    var lis = find(/^Flight Barcelona to Lisbon/);
+    if (lis && lis.amt === '') { lis.item = 'Vueling Barcelona to Lisbon, 26 Dec (about £345 + bags)'; }
+    if (!find(/Montserrat/)) { state.rows.push({ id:'m2', item:'Montserrat day trip tickets', cat:'tickets', cur:'EUR', amt:'', paid:false }); }
+    state.v = 4;
   }
 
   function save(){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }

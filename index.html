@@ -602,9 +602,9 @@ footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:2px}
           <span class="pill ok">Booked</span>
         </li>
         <li>
-          <input type="checkbox" id="c-fl-lis">
-          <label for="c-fl-lis"><span class="what">Barcelona to Lisbon, Sat 26 Dec</span><span class="note">Pick: Vueling 12:15 from Barcelona Terminal 1, landing in Lisbon at 13:25. About £345 for four on 24 Nov, before bags. Add two checked bags. Backup: easyJet 10:40 from Terminal 2, landing 11:50, a similar price.</span></label>
-          <span class="pill warn">To book</span>
+          <input type="checkbox" id="c-fl-lis2" checked>
+          <label for="c-fl-lis2"><span class="what">Barcelona to Lisbon, Sat 26 Dec</span><span class="note">Vueling VY1146, Barcelona 12:15, landing in Lisbon 13:25. Basic fare: an under-seat bag each, plus two overhead cabin bags and two 25 kg checked bags. No seats chosen, so they are assigned at check-in.</span></label>
+          <span class="pill ok">Booked</span>
         </li>
         <li>
           <input type="checkbox" id="c-fl-lon">
@@ -673,7 +673,7 @@ footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:2px}
   <div class="sec-head">
     <div>
       <h2>Flights</h2>
-      <p class="muted small">Qatar Airways for the long haul, all four confirmed, then the hops around Europe as they are booked. Times are local to each airport.</p>
+      <p class="muted small">Qatar Airways for the long haul, all four confirmed, then the hops around Europe. Times are local to each airport.</p>
     </div>
   </div>
 
@@ -733,7 +733,7 @@ footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:2px}
     </div>
 
     <div class="journey">
-      <h3>Within Europe <span>Cabin bag each · 2 × 23 kg</span></h3>
+      <h3>Within Europe <span>Bags differ by flight</span></h3>
       <article class="pass">
         <div class="pass-main">
           <div class="pass-top"><span>British Airways</span><span class="pill ok">Booked</span></div>
@@ -743,18 +743,18 @@ footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:2px}
             <div class="end arr"><span class="code">BCN</span><span class="time">17:55</span><span class="place">Barcelona, Terminal 1</span></div>
           </div>
         </div>
-        <div class="pass-stub"><dl><div><dt>Flight</dt><dd class="no">BA486</dd></div><div><dt>Date</dt><dd>Tue 22 Dec</dd></div><div><dt>Fare</dt><dd>Euro Traveller Basic</dd></div></dl></div>
+        <div class="pass-stub"><dl><div><dt>Flight</dt><dd class="no">BA486</dd></div><div><dt>Date</dt><dd>Tue 22 Dec</dd></div><div><dt>Bags</dt><dd>Cabin bag each, 2 × 23 kg checked</dd></div></dl></div>
       </article>
       <article class="pass">
         <div class="pass-main">
-          <div class="pass-top"><span>Vueling · the pick</span><span class="pill warn">To book</span></div>
+          <div class="pass-top"><span>Vueling</span><span class="pill ok">Booked</span></div>
           <div class="pass-route">
             <div class="end"><span class="code">BCN</span><span class="time">12:15</span><span class="place">Barcelona, Terminal 1</span></div>
             <div class="mid"><svg aria-hidden="true"><use href="#plane"/></svg><i></i><span>2h 10m</span></div>
             <div class="end arr"><span class="code">LIS</span><span class="time">13:25</span><span class="place">Lisbon Humberto Delgado</span></div>
           </div>
         </div>
-        <div class="pass-stub"><dl><div><dt>Flight</dt><dd class="no">Vueling</dd></div><div><dt>Date</dt><dd>Sat 26 Dec</dd></div><div><dt>Fare</dt><dd>About £345 for 4</dd></div></dl></div>
+        <div class="pass-stub"><dl><div><dt>Flight</dt><dd class="no">VY1146</dd></div><div><dt>Date</dt><dd>Sat 26 Dec</dd></div><div><dt>Bags</dt><dd>2 cabin, 2 × 25 kg checked</dd></div></dl></div>
       </article>
       <p class="small muted">Lisbon to London on 30 Dec is still to book.</p>
     </div>
@@ -926,14 +926,15 @@ footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:2px}
       <article class="day travel" data-date="2026-12-26">
         <div class="date"><span class="dow">Sat</span><span class="num">26</span><span class="mon">Dec</span></div>
         <div class="day-body">
-          <div class="day-title"><svg aria-hidden="true"><use href="#plane"/></svg><h4>Fly to Lisbon</h4><span class="pill warn">Flight to book</span><span class="pill info">Holiday in Catalonia</span></div>
+          <div class="day-title"><svg aria-hidden="true"><use href="#plane"/></svg><h4>Fly to Lisbon</h4><span class="pill ok">Booked</span><span class="pill info">Holiday in Catalonia</span></div>
           <ul class="plan">
             <li><span class="slot">Morning</span><span class="txt">Shops are closed again for Sant Esteve. Breakfast nearby, pack and check out.</span></li>
             <li><span class="slot">09:45</span><span class="txt">Taxi from the hotel to Barcelona Terminal 1, about 25 to 30 minutes on quiet holiday roads.</span></li>
-            <li><span class="slot">12:15</span><span class="txt">Vueling to Lisbon, landing at 13:25 local time. Lisbon is one hour behind Barcelona. No passport control, as both are in Schengen.</span></li>
+            <li><span class="slot">12:15</span><span class="txt">Vueling VY1146 to Lisbon, landing at 13:25 local time. Bag drop closes 40 minutes before departure and boarding ends 20 minutes before. Lisbon is one hour behind Barcelona. No passport control, as both are in Schengen.</span></li>
             <li><span class="slot">Afternoon</span><span class="txt">Taxi or metro into the centre, about 20 to 25 minutes, and check in.</span></li>
             <li><span class="slot">Evening</span><span class="txt">Christmas lights at Praça do Comércio and dinner in Chiado.</span></li>
           </ul>
+          <p class="heads"><b>Bags:</b> an under-seat bag each, two overhead cabin bags and two 25 kg checked bags. A second or oversized cabin bag is charged at the gate, up to €75.</p>
         </div>
       </article>
     </div>
@@ -1660,7 +1661,7 @@ var GEO={"land":{"type":"MultiPolygon","coordinates":[[[[178.1,-17.5],[178.4,-17
         ['BA486 London to Barcelona, 22 Dec (with 2 bags)', 'flights', 'GBP', true, '630.20'],
         ['INNSiDE Barcelona Apolo, 22 to 26 Dec (prepaid)', 'hotels', 'EUR', true, '899.16'],
         ['Barcelona city tax, paid at the hotel',          'hotels',  'EUR', false, '147.84'],
-        ['Vueling Barcelona to Lisbon, 26 Dec (about £345 + bags)', 'flights', 'GBP', false],
+        ['Vueling VY1146 Barcelona to Lisbon, 26 Dec (with bags)', 'flights', 'EUR', true, '585.96'],
         ['Lisbon hotel, 26 to 30 Dec',                     'hotels',  'EUR', false],
         ['Flight Lisbon to London, 30 Dec',                'flights', 'GBP', false],
         ['London hotel, 30 Dec to 2 Jan',                  'hotels',  'GBP', false],
@@ -1670,7 +1671,7 @@ var GEO={"land":{"type":"MultiPolygon","coordinates":[[[[178.1,-17.5],[178.4,-17
         ['UK ETA for each traveller',                      'other',   'GBP', false],
         ['Travel insurance',                               'other',   'MYR', false]
       ].map(function(r, i){ return { id:'d' + i, item:r[0], cat:r[1], cur:r[2], amt:r[4] || '', paid:r[3] }; }),
-      v: 4
+      v: 5
     };
   }
 
@@ -1713,6 +1714,11 @@ var GEO={"land":{"type":"MultiPolygon","coordinates":[[[[178.1,-17.5],[178.4,-17
     if (lis && lis.amt === '') { lis.item = 'Vueling Barcelona to Lisbon, 26 Dec (about £345 + bags)'; }
     if (!find(/Montserrat/)) { state.rows.push({ id:'m2', item:'Montserrat day trip tickets', cat:'tickets', cur:'EUR', amt:'', paid:false }); }
     state.v = 4;
+  }
+  if (state.v < 5) {
+    var vy = state.rows.filter(function(r){ return /Barcelona to Lisbon/.test(r.item) && r.amt === ''; })[0];
+    if (vy) { vy.item = 'Vueling VY1146 Barcelona to Lisbon, 26 Dec (with bags)'; vy.cur = 'EUR'; vy.amt = '585.96'; vy.paid = true; }
+    state.v = 5;
   }
 
   function save(){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
